@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subterráneo - Disco León</title>
+    <!-- Incluir la fuente Montserrat desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Enlace del ícono -->
+    <link rel="icon" href="icono.png" type="image/png">
+    
+    <!-- Open Graph Meta Tags para Social Cards -->
+    <meta property="og:title" content="Subterráneo - Disco León">
+    <meta property="og:description" content="¡Disco León llega pronto! Lanzamiento oficial el 30 de noviembre de 2024.">
+    <meta property="og:image" content="subte-1.jpg">
+    <meta property="og:url" content="https://subterraneomusic.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Subterráneo - Disco León">
+    <meta name="twitter:description" content="¡Disco León llega pronto! Lanzamiento oficial el 30 de noviembre de 2024.">
+    <meta name="twitter:image" content="subte-1.jpg">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4E923NB3HQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4E923NB3HQ');
+    </script>
+
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            color: white;
+        }
+
+        /* Contenedor principal sin borde pero con sombra palpitante */
+        .countdown-container {
+            text-align: center;
+            padding: 30px;
+            box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+            transition: box-shadow 1s ease-in-out;
+        }
+
+        .countdown-container:hover {
+            box-shadow: 0 0 40px #00ccff, 0 0 60px #00ccff, 0 0 80px #00ccff;
+        }
+
+        /* Estilos para la cuenta regresiva */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .time {
+            margin: 0 10px;
+        }
+
+        .number {
+            font-size: 48px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .label {
+            font-size: 16px;
+        }
+
+        /* Botones de redes sociales */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .social-btn {
+            margin: 0 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            border: 2px solid #ff00ff;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background-color: #ff00ff;
+            color: #000;
+        }
+
+        .instagram {
+            background-color: transparent;
+        }
+
+        .tiktok {
+            background-color: transparent;
+        }
+
+        /* Responsividad para móviles */
+        @media (max-width: 768px) {
+            .countdown-container {
+                width: 90%;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+            }
+
+            .social-btn {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor principal con animación de neón sin borde -->
+    <div class="countdown-container">
+        <h1 class="title">¡Disco León llega pronto!</h1>
+        <p class="subtitle">Lanzamiento oficial el 30 de noviembre de 2024</p>
+        <div id="countdown" class="countdown">
+            <div class="time">
+                <span id="days" class="number">00</span>
+                <span class="label">Días</span>
+            </div>
+            <div class="time">
+                <span id="hours" class="number">00</span>
+                <span class="label">Horas</span>
+            </div>
+            <div class="time">
+                <span id="minutes" class="number">00</span>
+                <span class="label">Minutos</span>
+            </div>
+            <div class="time">
+                <span id="seconds" class="number">00</span>
+                <span class="label">Segundos</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de redes sociales -->
+    <div class="social-buttons">
+        <a href="https://www.instagram.com/subterraneoni/" target="_blank" class="social-btn instagram">Instagram</a>
+        <a href="https://tiktok.com" target="_blank" class="social-btn tiktok">TikTok</a>
+    </div>
+
+    <script>
+        // Script para la cuenta regresiva
+        const countdown = () => {
+            const countDate = new Date('November 30, 2024 00:00:00').getTime();
+            const now = new Date().getTime();
+            const gap = countDate - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const textDay = Math.floor(gap / day);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
+
+            document.getElementById('days').innerText = textDay;
+            document.getElementById('hours').innerText = textHour;
+            document.getElementById('minutes').innerText = textMinute;
+            document.getElementById('seconds').innerText = textSecond;
+        };
+
+        setInterval(countdown, 1000);
+
+        // Script para animación neón (solo sombra)
+        const neonEffect = document.querySelector('.countdown-container');
+        const neonColors = ['#ff00ff', '#00ccff'];
+        let currentColor = 0;
+
+        const animateNeon = () => {
+            neonEffect.style.boxShadow = `0 0 20px ${neonColors[currentColor]}, 0 0 30px ${neonColors[currentColor]}, 0 0 40px ${neonColors[currentColor]}`;
+            currentColor = (currentColor + 1) % neonColors.length;
+        };
+
+        setInterval(animateNeon, 2000); // Cambiar cada 2 segundos
+    </script>
+
+</body>
+</html>

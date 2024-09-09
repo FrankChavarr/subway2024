@@ -113,38 +113,3 @@ body::before {
     background-color: #ff00ff;
     box-shadow: 0 0 15px #ff00ff, 0 0 30px #00ccff;
 }
-
-/* Ajustes para pantallas con un ancho específico de 422px */
-@media (max-width: 422px) {
-    .countdown-container {
-        width: 95vw; /* Asegurarse que ocupe casi todo el ancho */
-        max-width: 422px;
-    }
-
-    .title {
-        font-size: 5vw; /* Ajuste para pantallas más pequeñas */
-    }
-
-    .subtitle {
-        font-size: 3vw;
-    }
-
-    .number {
-        font-size: 4.5vw;
-    }
-
-    .label {
-        font-size: 2vw;
-    }
-
-    .social-container {
-        gap: 5vw;
-    }
-
-    .social-btn img {
-        width: 25px;
-        height: 25px;
-   
-
-    }
-}

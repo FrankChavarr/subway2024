@@ -48,14 +48,16 @@
             height: 100vh;
             background-color: #000;
             color: white;
+            text-align: center;
         }
 
-        /* Contenedor principal sin borde pero con sombra palpitante */
+        /* Contenedor principal con animación de neón sin borde */
         .countdown-container {
-            text-align: center;
             padding: 30px;
             box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
             transition: box-shadow 1s ease-in-out;
+            max-width: 600px; /* Máximo ancho para evitar estiramiento */
+            margin: 0 auto; /* Centramos horizontalmente */
         }
 
         .countdown-container:hover {
@@ -66,11 +68,13 @@
         .countdown {
             display: flex;
             justify-content: center;
+            gap: 20px; /* Espacio entre los bloques de tiempo */
+            flex-wrap: wrap; /* Acomodar en múltiples líneas si es necesario */
             margin-top: 20px;
         }
 
         .time {
-            margin: 0 10px;
+            text-align: center;
         }
 
         .number {
@@ -87,11 +91,11 @@
         .social-buttons {
             display: flex;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 30px;
+            gap: 20px; /* Espacio entre botones */
         }
 
         .social-btn {
-            margin: 0 10px;
             padding: 10px 20px;
             text-decoration: none;
             color: white;
@@ -106,26 +110,19 @@
             color: #000;
         }
 
-        .instagram {
-            background-color: transparent;
-        }
-
-        .tiktok {
+        .instagram, .tiktok {
             background-color: transparent;
         }
 
         /* Responsividad para móviles */
         @media (max-width: 768px) {
             .countdown-container {
-                width: 90%;
+                width: 80%;
+                max-width: 400px; /* Ajuste para móviles */
             }
 
             .social-buttons {
                 flex-direction: column;
-            }
-
-            .social-btn {
-                margin: 10px 0;
             }
         }
     </style>
@@ -159,7 +156,7 @@
     <!-- Botones de redes sociales -->
     <div class="social-buttons">
         <a href="https://www.instagram.com/subterraneoni/" target="_blank" class="social-btn instagram">Instagram</a>
-        <a href="https://tiktok.com" target="_blank" class="social-btn tiktok">TikTok</a>
+        <a href="https://www.tiktok.com/@subterraneoni"target=":_blank" class="social-btn tiktok">TikTok</a>
     </div>
 
     <script>

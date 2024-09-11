@@ -1,0 +1,194 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1d;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos de la barra de navegación */
+.navbar {
+    background-color: #1a1a1d;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #ff00ff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    color: #ff00ff;
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-toggle-icon {
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: transform 0.3s, top 0.3s, bottom 0.3s;
+}
+
+.nav-toggle-icon::before {
+    top: -8px;
+}
+
+.nav-toggle-icon::after {
+    bottom: -8px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #00ccff;
+}
+
+/* Estilos del pop-up de la canción */
+.song-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #282828;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 600px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.song-details.hidden {
+    display: none;
+}
+
+.song-details h2 {
+    color: #ff00ff;
+    margin-bottom: 10px;
+}
+
+#spotify-embed-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.btn-close {
+    padding: 10px 20px;
+    background-color: #ff00ff;
+    color: #282828;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-close:hover {
+    background-color: #e600e6;
+}
+
+/* Estilos de los puntos de las estaciones con animación de pulsación */
+.station-marker {
+    width: 15px;
+    height: 15px;
+    background-color: #ff00ff;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    position: absolute;
+    animation: pulse 2s infinite;
+}
+
+.station-name {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Ajuste para el mapa */
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.city-map {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ffffff;
+}
+
+/* Animación de pulsación y brillo */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff;
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+    }
+}

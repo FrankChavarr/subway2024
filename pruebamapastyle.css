@@ -177,6 +177,16 @@ body {
     border: 2px solid #ffffff;
 }
 
+/* Estilos para el ícono de estación bloqueada (candado) */
+.locked-marker .lock-icon {
+    width: 24px;
+    height: 24px;
+    background-image: url('cadao.png'); /* Asegúrate de ajustar la ruta de la imagen */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 /* Animación de pulsación y brillo */
 @keyframes pulse {
     0% {

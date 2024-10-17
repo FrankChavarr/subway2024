@@ -17,6 +17,18 @@
             background-color: #ff00ff; /* Color rosado */
             border-radius: 50%;
             box-shadow: 0 0 10px #ff00ff; /* Sombra neón */
+            position: relative; /* Para posicionar el candado */
+        }
+
+        .lock-icon {
+            width: 10px;
+            height: 10px;
+            background-image: url('candao.png'); /* Cambia esta ruta por la de tu imagen de candado */
+            background-size: cover;
+            position: absolute;
+            top: -5px; /* Ajusta la posición según sea necesario */
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         /* Estilos para la ventana emergente */

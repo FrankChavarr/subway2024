@@ -1,33 +1,40 @@
-/* Estilos generales de la página */
+/* Estilos generales */
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: 'Montserrat', sans-serif;
   background-color: #1a1a1d;
   color: #ffffff;
+  margin: 0;
+  padding: 0;
 }
 
 /* Estilos del título destacado */
-.title-highlight {
+.title-highlight1 {
   font-size: 3rem;
-  color: #ffffff; /* Restauración del color rosa */
-  font-family: 'Arial', cursive; /* Restauración de la tipografía original */
+  color: #ff3823; /* Restauración del color rosa */
   margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-/* Estilos del menú de navegación */
+.title-highlight2 {
+  font-size: 1.2  rem;
+  font-family: Arial, sans-serif;
+  margin: 10px 0;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+/* Estilos del Menú de Navegación */
 .navbar {
   background-color: #1a1a1d;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 9999; /* Asegura que el menú esté siempre por encima del contenido */
   padding: 10px 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  border-bottom: 2px solid #ff00ff;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #ff3823;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Añade una sombra para destacarlo */
 }
 
 .nav-container {
@@ -39,13 +46,18 @@ body {
 }
 
 .nav-logo {
-  color: #ff00ff;
-  font-size: 1.8rem;
-  text-decoration: none;
-  font-weight: bold;
   display: flex;
   align-items: center;
+  margin-right: auto; /* Para alinear a la izquierda */
+  padding-left: 20px; /* Ajusta el espacio desde el borde izquierdo */
 }
+
+.logo-img {
+  max-height: 40px; /* Ajusta el tamaño del logo según se vea mejor */
+  height: auto;
+  display: block;
+}
+
 
 .nav-toggle {
   display: none;
@@ -56,8 +68,8 @@ body {
 }
 
 .nav-toggle-icon {
-  width: 25px;
-  height: 2px;
+  width: 30px;
+  height: 3px;
   background-color: #ffffff;
   display: block;
   position: relative;
@@ -68,7 +80,7 @@ body {
 .nav-toggle-icon::after {
   content: '';
   position: absolute;
-  width: 25px;
+  width: 30px;
   height: 2px;
   background-color: #ffffff;
   transition: transform 0.3s, top 0.3s, bottom 0.3s;
@@ -99,12 +111,56 @@ body {
 }
 
 .nav-link:hover {
-  color: #00ccff;
+  color: #ff3823;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+  .nav-toggle {
+      display: block;
+      position: absolute;
+      right: 66px; /* Ajusta la distancia desde el margen derecho */
+      top: 25px; /* Ajusta la distancia desde la parte superior */
+      z-index: 10000; /* Asegura que el botón esté visible por encima de otros elementos */
+  }
+
+  .nav-toggle-icon {
+      background-color: #ffffff;
+  }
+
+  .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background-color: #1a1a1d;
+      border-top: 1px solid #ff3823;
+      padding: 20px 0;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-menu.active {
+      display: flex;
+  }
+
+  .nav-link {
+      padding: 10px 20px;
+      text-align: center;
+  }
+
+  /* Alinear logo a la izquierda en móvil */
+  .nav-logo {
+      margin-right: auto;
+      padding-left: 0px; /* Añade espacio desde el margen izquierdo para alinearlo mejor */
+  }
 }
 
 /* Estilos de los botones del encabezado */
 .btn-primary, .btn-secondary {
   display: inline-block;
+  font-family: Arial, sans-serif;
   margin: 10px 5px;
   padding: 12px 20px;
   text-decoration: none;
@@ -113,22 +169,23 @@ body {
   transition: background-color 0.3s;
   font-weight: bold;
   font-size: 1rem;
+  
 }
 
 .btn-primary {
-  background-color: #ff00ff;
+  background-color: #ff3823;
 }
 
 .btn-primary:hover {
-  background-color: #e600e6;
+  background-color: #ff9e2a;
 }
 
 .btn-secondary {
-  background-color: #00ccff;
+  background-color: #ff3823;
 }
 
 .btn-secondary:hover {
-  background-color: #00b2e6;
+  background-color: #ff9e2a;
 }
 
 /* Estilos del header */
@@ -155,8 +212,9 @@ body {
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  filter: brightness(0.5);
+  filter: brightness(0.5); /* Mantén el ajuste de brillo */
 }
+
 
 /* Estilos de la sección "Sobre Subterráneo" */
 .about {
@@ -167,7 +225,7 @@ body {
 
 .about h2 {
   font-size: 2rem;
-  color: #ff00ff;
+  color: #ff3823;
 }
 
 .about p {
@@ -186,7 +244,7 @@ body {
 
 .explore-map h2 {
   font-size: 2rem;
-  color: #ff00ff;
+  color: #ff3823;
   margin-bottom: 20px;
 }
 
@@ -198,7 +256,7 @@ body {
 }
 
 .btn-explore {
-  background-color: #00ccff;
+  background-color: #ff3823;
   padding: 14px 24px;
   text-decoration: none;
   color: #ffffff;
@@ -209,13 +267,43 @@ body {
 }
 
 .btn-explore:hover {
-  background-color: #00b2e6;
+  background-color: #ff9e2a;
 }
 
 /* Estilos del pie de página */
 .footer {
-  padding: 20px;
   background-color: #1a1a1d;
+  padding: 20px;
   text-align: center;
   color: #cccccc;
+  font-size: 0.9rem;
 }
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+p {
+  margin: 10px 0 0 0;
+  color: #cccccc;
+}
+

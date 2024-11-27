@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -9,22 +10,9 @@ body {
     background-color: #1a1a1d;
     color: #ffffff;
     text-align: center;
+    position: relative; /* Para el fondo de la imagen */
 }
 
-.countdown-container {
-    padding: 20px;
-    border: 2px solid #ff00ff;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-}
-
-/* Ajuste de la imagen de fondo */
 body::before {
     content: '';
     position: absolute;
@@ -38,21 +26,37 @@ body::before {
     filter: brightness(0.7);
 }
 
+.countdown-container {
+    padding: 20px;
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    width: 95vw; /* Ajustado para aprovechar el espacio */
+    max-width: 375px; /* Específico para esa resolución */
+    animation: neon-flicker 2s infinite alternate; /* Añadido animación de neón */
+}
+
 .title {
-    font-size: 3rem;
+    font-size: 4rem; /* Ajuste estándar para el tamaño del texto */
     color: #ff00ff;
     margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 15px;
     color: #cccccc;
 }
 
 .countdown {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     justify-content: center;
 }
 
@@ -63,63 +67,107 @@ body::before {
 }
 
 .number {
-    font-size: 3rem;
+    font-size: 3rem; /* Tamaño estándar para el texto */
     color: #00ccff;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .label {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #cccccc;
 }
 
-/* Estilos del formulario de suscripción */
-.subscription-form {
-    margin-top: 30px;
-    text-align: center;
+/* Efecto neón */
+@keyframes neon-flicker {
+    0%, 100% {
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ccff, 0 0 30px #ff00ff;
+    }
+    100% {
+        box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ccff;
+    }
 }
 
-.subscription-title {
-    font-size: 1.8rem;
-    color: #ff00ff;
-    margin-bottom: 10px;
-}
-
-.subscription-text {
-    font-size: 1rem;
-    color: #cccccc;
-    margin-bottom: 15px;
-}
-
-.form {
+/* Estilos de los botones de redes sociales */
+.social-container {
+    margin-top: 25px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-.input-email {
-    padding: 10px 15px;
-    width: 300px;
-    border: 2px solid #00ccff;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    outline: none;
-    font-size: 1rem;
-    color: #1a1a1d;
+.social-btn {
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #1a1a1d;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ccff;
+    transition: all 0.3s ease;
 }
 
-.btn-subscribe {
-    padding: 10px 20px;
+.social-btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.social-btn:hover {
     background-color: #ff00ff;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    box-shadow: 0 0 15px #ff00ff, 0 0 30px #00ccff;
 }
 
-.btn-subscribe:hover {
-    background-color: #e600e6;
+/* Ajustes para dispositivos móviles */
+@media (max-width: 450px) {
+    .title {
+        font-size: 1.5rem; /* Ajustado más pequeño */
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+    }
+
+    .number {
+        font-size: 2rem; /* Ajustado más pequeño */
+    }
+
+    .label {
+        font-size: 1rem;
+    }
+
+    .social-btn img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .countdown-container {
+        padding: 15px;
+        width: 90vw; /* Ajuste para pantallas más pequeñas */
+    }
+}
+
+/* Ajustes para pantallas más pequeñas (iPhone SE y similares) */
+@media (max-width: 375px) {
+    .title {
+        font-size: 1.8rem; /* Ajuste aún más pequeño */
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .number {
+        font-size: 1.5rem; /* Ajuste aún más pequeño */
+    }
+
+    .label {
+        font-size: 0.9rem;
+    }
+
+    .social-btn img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .countdown-container {
+        padding: 10px;
+        width: 85vw; /* Ajuste para pantallas muy pequeñas */
+    }
 }

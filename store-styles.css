@@ -6,29 +6,202 @@ body {
     color: #ffffff;
     overflow-x: hidden;
 }
+/* Estilos del Menú de Navegación */
+.navbar {
+    background-color: #1a1a1d;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999; /* Asegura que el menú esté siempre por encima del contenido */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #ff6326;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Añade una sombra para destacarlo */
+  }
+  
+  .nav-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Para alinear a la izquierda */
+    padding-left: 20px; /* Ajusta el espacio desde el borde izquierdo */
+  }
+  
+  .logo-img {
+    max-height: 40px; /* Ajusta el tamaño del logo según se vea mejor */
+    height: auto;
+    display: block;
+  }
+  
+  
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .nav-toggle-icon {
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+    transition: 0.3s;
+  }
+  
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: transform 0.3s, top 0.3s, bottom 0.3s;
+  }
+  
+  .nav-toggle-icon::before {
+    top: -8px;
+  }
+  
+  .nav-toggle-icon::after {
+    bottom: -8px;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-item {
+    list-style: none;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #ff6326;
+  }
+  
+  /* Estilos Responsivos */
+  @media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        right: 66px; /* Ajusta la distancia desde el margen derecho */
+        top: 25px; /* Ajusta la distancia desde la parte superior */
+        z-index: 10000; /* Asegura que el botón esté visible por encima de otros elementos */
+    }
+  
+    .nav-toggle-icon {
+        background-color: #ffffff;
+    }
+  
+    /* Estado inicial del menú en móvil (oculto) */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #1a1a1d;
+        border-top: 1px solid #ff6326;
+        padding: 20px 0;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Estado activo (desplegado) */
+    .nav-menu.active {
+        display: flex;
+    }
+
+
+  
+    .nav-link {
+        padding: 10px 20px;
+        text-align: center;
+    }
+  
+    /* Alinear logo a la izquierda en móvil */
+    .nav-logo {
+        margin-right: auto;
+        padding-left: 0px; /* Añade espacio desde el margen izquierdo para alinearlo mejor */
+    }
+  }
+  
 
 /* Banner Promocional */
-.promo-banner {
+.store-banner {
+    width: 100%;
+    height: 450px; /* Aumentar la altura del banner */
+    background: linear-gradient(135deg, #ff6326, #ff9e2a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 50px 20px;
-    background: linear-gradient(135deg, #ff00ff, #00ccff);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-content {
+    max-width: 800px;
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.store-banner h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem; /* Aumentar el tamaño del texto */
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.store-banner p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem; /* Aumentar el tamaño del subtítulo */
+    margin-bottom: 40px;
+}
+
+.btn-banner {
+    font-family: 'Montserrat', sans-serif;
+    background: #ffffff;
+    color: #ff6326;
+    padding: 15px 25px; /* Botón más grande */
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-banner:hover {
+    transform: scale(1.1);
+    background-color: #ff6326;
     color: #ffffff;
 }
 
-.promo-banner h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.promo-banner p {
-    font-size: 1.2rem;
-}
 
 .btn-preorder {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
-    background-color: #3333ff;
+    background-color: #ff6326;
     color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
@@ -36,7 +209,7 @@ body {
 }
 
 .btn-preorder:hover {
-    background-color: #ff00ff;
+    background-color: #ff6326;
 }
 
 /* Sección de Productos */
@@ -48,7 +221,7 @@ body {
 
 .product-section h2 {
     font-size: 2.5rem;
-    color: #ff00ff;
+    color: #ff6326;
     margin-bottom: 20px;
 }
 
@@ -81,17 +254,17 @@ body {
 .product-item h3 {
     font-size: 1.2rem;
     margin: 10px 0;
-    color: #00ccff;
+    color: #ff6326;
 }
 
 .price {
     font-size: 1.2rem;
-    color: #ff00ff;
+    color: #ff6326;
 }
 
 .btn-add-to-cart {
     padding: 10px 15px;
-    background-color: #ff00ff;
+    background-color: #ff6326;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -113,7 +286,7 @@ body {
 
 .cart-section h2 {
     font-size: 2rem;
-    color: #00ccff;
+    color: #ff6326;
 }
 
 #cart-items {
@@ -135,7 +308,7 @@ body {
 
 .btn-checkout {
     padding: 10px 20px;
-    background-color: #3333ff;
+    background-color: #ff6326;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -144,121 +317,104 @@ body {
 }
 
 .btn-checkout:hover {
-    background-color: #ff00ff;
+    background-color: #ff6326;
 }
 
 .hidden {
     display: none;
 }
-/* Estilos del Menú de Navegación */
-.navbar {
-    background-color: #1a1a1d;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 9999; /* Asegura que el menú esté siempre por encima del contenido */
-    padding: 10px 20px;
+.quantity-container {
+    margin: 10px 0;
     display: flex;
     justify-content: center;
-    border-bottom: 2px solid #ff00ff;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Añade una sombra para destacarlo */
-}
-
-.nav-container {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
-.nav-logo {
-    color: #ff00ff;
-    font-size: 1.8rem;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-}
-
-.nav-toggle-icon {
-    width: 25px;
-    height: 2px;
-    background-color: #ffffff;
-    display: block;
-    position: relative;
-    transition: 0.3s;
-}
-
-.nav-toggle-icon::before,
-.nav-toggle-icon::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 2px;
-    background-color: #ffffff;
-    transition: transform 0.3s, top 0.3s, bottom 0.3s;
-}
-
-.nav-toggle-icon::before {
-    top: -8px;
-}
-
-.nav-toggle-icon::after {
-    bottom: -8px;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-item {
-    list-style: none;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: #ffffff;
+.quantity-container label {
     font-size: 1rem;
-    transition: color 0.3s;
+    color: #ffffff;
 }
 
-.nav-link:hover {
-    color: #00ccff;
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ff6326;
 }
 
-/* Estilos Responsivos */
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block;
-    }
+.btn-cart {
+    background-color: #ff6326;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+}
 
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background-color: #1a1a1d;
-        border-top: 1px solid #ff00ff;
-        padding: 20px 0;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-    }
+.btn-cart:hover {
+    background-color: #ff6326;
+    transform: translateY(-2px);
+}
+.total-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff9e2a;
+    margin-top: 10px;
+    text-align: center;
+}
 
-    .nav-menu.active {
-        display: flex;
-    }
+/*nuevo campo*/
+.quantity-container {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    gap: 10px;
+}
 
-    .nav-link {
-        padding: 10px 20px;
-        text-align: center;
-    }
+.quantity-controls {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    gap: 5px;
+}
+
+.quantity-input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ff6326;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.btn-quantity {
+    background-color: #ff6326;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-quantity:hover {
+    background-color: #ff6326;
+    transform: scale(1.1);
+}
+
+.quantity-container label {
+    font-size: 1rem;
+    color: #ffffff;
+    text-align: center; /* Asegura que el texto del label esté centrado */
 }

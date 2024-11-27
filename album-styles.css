@@ -1,17 +1,152 @@
-/* Estilos Generales */
+/* Estilos generales */
 body {
-    margin: 0;
     font-family: 'Montserrat', sans-serif;
     background-color: #1a1a1d;
     color: #ffffff;
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
-}
+  }
+  /* Estilos del Menú de Navegación */
+.navbar {
+    background-color: #1a1a1d;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999; /* Asegura que el menú esté siempre por encima del contenido */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #ff3823;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Añade una sombra para destacarlo */
+  }
+  
+  .nav-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Para alinear a la izquierda */
+    padding-left: 20px; /* Ajusta el espacio desde el borde izquierdo */
+  }
+  
+  .logo-img {
+    max-height: 40px; /* Ajusta el tamaño del logo según se vea mejor */
+    height: auto;
+    display: block;
+  }
+  
+  
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .nav-toggle-icon {
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+    transition: 0.3s;
+  }
+  
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: transform 0.3s, top 0.3s, bottom 0.3s;
+  }
+  
+  .nav-toggle-icon::before {
+    top: -8px;
+  }
+  
+  .nav-toggle-icon::after {
+    bottom: -8px;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-item {
+    list-style: none;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #ff3823;
+  }
+  
+  /* Estilos Responsivos */
+  @media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        right: 66px; /* Ajusta la distancia desde el margen derecho */
+        top: 25px; /* Ajusta la distancia desde la parte superior */
+        z-index: 10000; /* Asegura que el botón esté visible por encima de otros elementos */
+    }
+  
+    .nav-toggle-icon {
+        background-color: #ffffff;
+    }
+  
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #1a1a1d;
+        border-top: 1px solid #ff3823;
+        padding: 20px 0;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+  
+    .nav-menu.active {
+        display: flex;
+    }
+  
+    .nav-link {
+        padding: 10px 20px;
+        text-align: center;
+    }
+  
+    /* Alinear logo a la izquierda en móvil */
+    .nav-logo {
+        margin-right: auto;
+        padding-left: 0px; /* Añade espacio desde el margen izquierdo para alinearlo mejor */
+    }
+  }
+  
 
 /* Estilos del Encabezado */
 .album-header {
     text-align: center;
     padding: 20px;
-    background: linear-gradient(135deg, #ff00ff, #00ccff);
+    background: linear-gradient(135deg, #ff3823, #ff9e2a);
     color: #ffffff;
 }
 
@@ -43,7 +178,7 @@ body {
 
 .tracklist h2 {
     font-size: 2.5rem;
-    color: #ff00ff;
+    color: #ff3823;
     margin-bottom: 20px;
 }
 
@@ -62,12 +197,12 @@ body {
 
 .track:hover {
     transform: scale(1.05);
-    background: #3333ff;
+    background: #ff3823;
 }
 
 .track h3 {
     font-size: 1.5rem;
-    color: #00ccff;
+    color: #ffffff;
 }
 
 .track p {
@@ -79,7 +214,7 @@ body {
 .btn-listen {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff00ff;
+    background-color: #ff3823;
     color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
@@ -87,8 +222,37 @@ body {
 }
 
 .btn-listen:hover {
-    background-color: #00ccff;
+    background-color: #ff9e2a;
 }
+
+/* Botones en las canciones */
+.track .btn-listen,
+.track .btn-watch {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px; /* Espaciado entre botones */
+    background-color: #fb8249;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 0.9rem;
+}
+
+.track .btn-watch {
+    background-color: #fb8249; /* Color diferente para distinguirlo */
+}
+
+.track .btn-listen:hover {
+    background-color: #ff9e2a;
+    transform: translateY(-2px);
+}
+
+.track .btn-watch:hover {
+    background-color: #ff9e2a;
+    transform: translateY(-2px);
+}
+
 
 /* Pie de Página */
 .footer {
@@ -110,116 +274,4 @@ body {
 
 .social-links img:hover {
     transform: scale(1.1);
-}
-/* Estilos del Menú de Navegación */
-.navbar {
-    background-color: #1a1a1d;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 9999; /* Asegura que el menú esté siempre por encima del contenido */
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    border-bottom: 2px solid #ff00ff;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Añade una sombra para destacarlo */
-}
-
-.nav-container {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-logo {
-    color: #ff00ff;
-    font-size: 1.8rem;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-}
-
-.nav-toggle-icon {
-    width: 25px;
-    height: 2px;
-    background-color: #ffffff;
-    display: block;
-    position: relative;
-    transition: 0.3s;
-}
-
-.nav-toggle-icon::before,
-.nav-toggle-icon::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 2px;
-    background-color: #ffffff;
-    transition: transform 0.3s, top 0.3s, bottom 0.3s;
-}
-
-.nav-toggle-icon::before {
-    top: -8px;
-}
-
-.nav-toggle-icon::after {
-    bottom: -8px;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-item {
-    list-style: none;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 1rem;
-    transition: color 0.3s;
-}
-
-.nav-link:hover {
-    color: #00ccff;
-}
-
-/* Estilos Responsivos */
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block;
-    }
-
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background-color: #1a1a1d;
-        border-top: 1px solid #ff00ff;
-        padding: 20px 0;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .nav-menu.active {
-        display: flex;
-    }
-
-    .nav-link {
-        padding: 10px 20px;
-        text-align: center;
-    }
 }

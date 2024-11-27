@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disco León - Subterráneo</title>
+    <link rel="stylesheet" href="album-styles.css">
+</head>
+<body>
+
+    <!-- Menú de Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Subterráneo</a>
+            <button class="nav-toggle" id="nav-toggle">
+                <span class="nav-toggle-icon"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="album.html" class="nav-link">Disco León</a></li>
+                <li class="nav-item"><a href="mapa-leon.html" class="nav-link">Mapa Interactivo</a></li>
+                <li class="nav-item"><a href="band-page.html" class="nav-link">Biografía</a></li>
+                <li class="nav-item"><a href="store.html" class="nav-link">Tienda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Encabezado con la portada del álbum -->
+    <header class="album-header" style="padding-top: 100px;">
+        <img src="subte-1.jpg" alt="Portada del álbum Disco León" class="album-cover">
+        <h1>Disco León</h1>
+        <p>El nuevo álbum de Subterráneo es un viaje musical a través de estaciones de metro imaginarias. Cada canción es una parada única que nos sumerge en el universo del latin funk, disco y city pop.</p>
+    </header>
+
+    <!-- Lista de canciones con descripciones -->
+    <section class="tracklist">
+<!-- Lista de canciones con descripciones -->
+<section class="tracklist">
+    <h2>Lista de Canciones</h2>
+    <ul>
+        <li class="track">
+            <h3>Toda la noche</h3>
+            <p>Primer sencillo del álbum, esta estación te lleva a una fiesta interminable bajo las luces de la ciudad.</p>
+            <a href="#" class="btn-listen">Escuchar en Spotify</a>
+        </li>
+        <li class="track">
+            <h3>Disco León</h3>
+            <p>La estación principal del subterráneo imaginario, donde el funk y el disco se encuentran.</p>
+            <a href="#" class="btn-listen">Escuchar en Spotify</a>
+        </li>
+        <li class="track">
+            <h3>Amanecer</h3>
+            <p>El comienzo de un nuevo día, con melodías suaves y ritmos vibrantes.</p>
+            <a href="#" class="btn-listen">Escuchar en Spotify</a>
+        </li>
+        <li class="track">
+            <h3>Funky Love</h3>
+            <p>Una parada llena de groove y romance, perfecta para los amantes de la buena música.</p>
+            <a href="#" class="btn-listen">Escuchar en Spotify</a>
+        </li>
+        <li class="track">
+            <h3>Lavanda</h3>
+            <p>Una estación perfumada y melódica, que te envuelve con su suavidad y encanto.</p>
+            <a href="#" class="btn-listen">Escuchar en Spotify</a>
+        </li>
+        <li class="track">
+            <h3>El Vuelo</h3>
+            <p>El cierre perfecto de este viaje, como un tren que despega hacia nuevos horizontes.</p>
+            <a href="#" class="btn-listen">Escuchar en Spotify</a>
+        </li>
+        <!-- Nueva canción: La Pega -->
+        <li class="track">
+            <h3>La Pega</h3>
+            <p>Una estación especial que captura los sonidos de la calle, incluyendo el afilador de cuchillos, una esencia de León.</p>
+            <a href="#" class="btn-listen">Escuchar en Spotify</a>
+        </li>
+    </ul>
+</section>
+
+
+    <!-- Pie de página con enlaces de redes sociales -->
+    <footer class="footer">
+        <p>Síguenos en redes sociales:</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="#" target="_blank"><img src="spotify-icon.png" alt="Spotify"></a>
+        </div>
+        <p>Contacto: <a href="mailto:contacto@subterraneo.com">contacto@subterraneo.com</a></p>
+    </footer>
+
+    <script>
+        // Toggle del menú de navegación en móvil
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

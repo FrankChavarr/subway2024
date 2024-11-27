@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subterráneo - Biografía y Eventos</title>
+    <link rel="stylesheet" href="band-page-styles.css">
+</head>
+<body>
+
+    <!-- Menú de Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Subterráneo</a>
+            <button class="nav-toggle" id="nav-toggle">
+                <span class="nav-toggle-icon"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="album.html" class="nav-link">Disco León</a></li>
+                <li class="nav-item"><a href="mapa-leon.html" class="nav-link">Mapa Interactivo</a></li>
+                <li class="nav-item"><a href="band-page.html" class="nav-link">Biografía</a></li>
+                <li class="nav-item"><a href="store.html" class="nav-link">Tienda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sección de Biografía de la Banda -->
+    <section class="biography" style="padding-top: 70px;">
+        <h1>Subterráneo - La Banda</h1>
+        <div class="bio-content">
+            <img src="subte-1.jpg" alt="Subterráneo Band Photo" class="bio-photo">
+            <div class="bio-text">
+                <p>Subterráneo es una banda de latin funk, disco y city pop originaria de León, Nicaragua. Formada en los vibrantes barrios de la ciudad, la banda ha evolucionado desde sus humildes inicios tocando en bares locales hasta convertirse en un ícono de la escena musical centroamericana.</p>
+                <p>Inspirados por el paisaje urbano de León y su rica historia cultural, Subterráneo fusiona ritmos modernos con sonidos clásicos, creando una experiencia musical única que invita a sus seguidores a un viaje sonoro a través de su subterráneo imaginario.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería Interactiva de Fotos y Videos -->
+    <section class="gallery">
+        <h2>Galería de Fotos y Videos</h2>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="subte-1.jpg" alt="Concierto 1">
+            </div>
+            <div class="gallery-item">
+                <img src="subte-1.jpg" alt="Sesión de Estudio">
+            </div>
+            <div class="gallery-item">
+                <img src="subte-1.jpg" alt="Concierto 2">
+            </div>
+            <div class="gallery-item video-item">
+                <video controls>
+                    <source src="TODA LA NOCHE - SUBTERRÁNEO VIDEOCLIP - EVENTO.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Próximos Conciertos -->
+    <section class="events">
+        <h2>Próximos Conciertos</h2>
+        <div class="events-container">
+            <div class="event-item">
+                <h3>León Fest 2024</h3>
+                <p>Fecha: 15 de Octubre, 2024</p>
+                <p>Lugar: Parque Central, León</p>
+                <p>Detalles: Un concierto especial con una mezcla de los mejores éxitos de Subterráneo y canciones inéditas.</p>
+            </div>
+            <div class="event-item">
+                <h3>Festival de Música Nica</h3>
+                <p>Fecha: 20 de Noviembre, 2024</p>
+                <p>Lugar: Teatro Nacional, Managua</p>
+                <p>Detalles: Una noche para disfrutar de lo mejor de la música nicaragüense.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Redes Sociales y Newsletter -->
+    <footer class="footer">
+        <h2>Conéctate con Nosotros</h2>
+        <div class="social-links">
+            <a href="#" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="#" target="_blank"><img src="spotify-icon.png" alt="Spotify"></a>
+        </div>
+        <div class="newsletter">
+            <h3>Suscríbete a Nuestro Newsletter</h3>
+            <form id="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="band-page-scripts.js"></script>
+    <script>
+        // Toggle del menú de navegación en móvil
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

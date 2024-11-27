@@ -1,0 +1,264 @@
+/* Estilos Generales */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1a1a1d;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Banner Promocional */
+.promo-banner {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #ff00ff, #00ccff);
+    color: #ffffff;
+}
+
+.promo-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.promo-banner p {
+    font-size: 1.2rem;
+}
+
+.btn-preorder {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #3333ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-preorder:hover {
+    background-color: #ff00ff;
+}
+
+/* Sección de Productos */
+.product-section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #292929;
+}
+
+.product-section h2 {
+    font-size: 2.5rem;
+    color: #ff00ff;
+    margin-bottom: 20px;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-item {
+    background-color: #1a1a1d;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.product-item h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #00ccff;
+}
+
+.price {
+    font-size: 1.2rem;
+    color: #ff00ff;
+}
+
+.btn-add-to-cart {
+    padding: 10px 15px;
+    background-color: #ff00ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #00ccff;
+}
+
+/* Carrito de Compras */
+.cart-section {
+    padding: 40px 20px;
+    background-color: #121212;
+    color: #ffffff;
+    text-align: center;
+}
+
+.cart-section h2 {
+    font-size: 2rem;
+    color: #00ccff;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.total-price {
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+.btn-checkout {
+    padding: 10px 20px;
+    background-color: #3333ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-checkout:hover {
+    background-color: #ff00ff;
+}
+
+.hidden {
+    display: none;
+}
+/* Estilos del Menú de Navegación */
+.navbar {
+    background-color: #1a1a1d;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999; /* Asegura que el menú esté siempre por encima del contenido */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #ff00ff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Añade una sombra para destacarlo */
+}
+
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    color: #ff00ff;
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-toggle-icon {
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: transform 0.3s, top 0.3s, bottom 0.3s;
+}
+
+.nav-toggle-icon::before {
+    top: -8px;
+}
+
+.nav-toggle-icon::after {
+    bottom: -8px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #00ccff;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #1a1a1d;
+        border-top: 1px solid #ff00ff;
+        padding: 20px 0;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 10px 20px;
+        text-align: center;
+    }
+}

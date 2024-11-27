@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Subterráneo</title>
+    <link rel="stylesheet" href="store-styles.css">
+</head>
+<body>
+
+    <!-- Menú de Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Subterráneo</a>
+            <button class="nav-toggle" id="nav-toggle">
+                <span class="nav-toggle-icon"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="album.html" class="nav-link">Disco León</a></li>
+                <li class="nav-item"><a href="mapa-leon.html" class="nav-link">Mapa Interactivo</a></li>
+                <li class="nav-item"><a href="band-page.html" class="nav-link">Biografía</a></li>
+                <li class="nav-item"><a href="store.html" class="nav-link">Tienda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner Promocional de la Preventa del Álbum -->
+    <section class="promo-banner" style="padding-top: 100px;">
+        <h1>Preventa Exclusiva del Álbum "Disco León"</h1>
+        <p>Reserva ahora y obtén acceso anticipado a nuestro nuevo álbum.</p>
+        <a href="#" class="btn-preorder">Comprar en Spotify</a>
+        <a href="#" class="btn-preorder">Comprar en Apple Music</a>
+    </section>
+
+    <!-- Sección de Productos -->
+    <section class="product-section">
+        <h2>Productos Destacados</h2>
+        <div class="product-container">
+            <!-- Producto 1: Camiseta -->
+            <div class="product-item">
+                <img src="disco-leon-cover.jpg" alt="Camiseta Subterráneo" class="product-image">
+                <h3>Camiseta Subterráneo</h3>
+                <p>Camiseta oficial de la banda con diseño exclusivo retro.</p>
+                <p class="price">$20.00</p>
+                <button class="btn-add-to-cart">Añadir al Carrito</button>
+            </div>
+            <!-- Producto 2: Poster -->
+            <div class="product-item">
+                <img src="disco-leon-cover.jpg" alt="Poster Disco León" class="product-image">
+                <h3>Poster Disco León</h3>
+                <p>Poster de edición limitada del álbum "Disco León".</p>
+                <p class="price">$15.00</p>
+                <button class="btn-add-to-cart">Añadir al Carrito</button>
+            </div>
+            <!-- Producto 3: Vinilo -->
+            <div class="product-item">
+                <img src="disco-leon-cover.jpg" alt="Vinilo Disco León" class="product-image">
+                <h3>Vinilo Disco León</h3>
+                <p>Vinilo del nuevo álbum "Disco León" con arte exclusivo.</p>
+                <p class="price">$30.00</p>
+                <button class="btn-add-to-cart">Añadir al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrito de Compras -->
+    <section class="cart-section hidden" id="cart-section">
+        <h2>Carrito de Compras</h2>
+        <ul id="cart-items"></ul>
+        <p class="total-price">Total: $<span id="total-price">0.00</span></p>
+        <button class="btn-checkout">Proceder al Pago</button>
+    </section>
+
+    <script src="store-scripts.js"></script>
+    <script>
+        // Toggle del menú de navegación en móvil
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

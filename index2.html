@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subterráneo - Latin Funk y Disco</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+
+    <!-- Menú de Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Subterráneo</a>
+            <button class="nav-toggle" id="nav-toggle">
+                <span class="nav-toggle-icon"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="album.html" class="nav-link">Disco León</a></li>
+                <li class="nav-item"><a href="mapa-leon.html" class="nav-link">Ruta Subterránea</a></li>
+                <li class="nav-item"><a href="band-page.html" class="nav-link">Biografía</a></li>
+                <li class="nav-item"><a href="store.html" class="nav-link">Tienda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header con video corto o GIF -->
+    <header class="header">
+        <video class="background-video" autoplay loop muted playsinline>
+            <source src="videocortoloop.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+        <div class="header-content">
+            <h1 class="title-highlight">Bienvenidos a Subterráneo</h1>
+            <p>Sumérgete en el latin funk, disco y city pop de León, Nicaragua.</p>
+            <div class="cta-buttons">
+                <a href="mapa-leon.html" class="btn-primary">Descubre la Ruta Subterránea</a>
+                <a href="#" class="btn-secondary">Síguenos en Spotify</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de descripción de la banda -->
+    <section class="about">
+        <h2>Sobre Subterráneo</h2>
+        <p>Subterráneo es una banda que fusiona el latin funk, la música disco y el city pop, creando una experiencia musical única. Cada canción es una parada en un viaje sonoro a través del subterráneo imaginario de León, Nicaragua.</p>
+    </section>
+
+    <!-- Nueva Sección de Conexión con la Ruta Subterránea -->
+    <section class="explore-map">
+        <h2>Conéctate con Nuestro Viaje en la Ruta Subterránea</h2>
+        <p>Descubre cada estación de nuestro viaje musical a través de León con la “Ruta Subterránea”. Cada parada es una canción de nuestro álbum "Disco León", invitándote a explorar y sentir la historia detrás de cada melodía.</p>
+        <a href="mapa-leon.html" class="btn-explore">Explora la Ruta</a>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <p>Síguenos en redes sociales:</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="#" target="_blank"><img src="spotify-icon.png" alt="Spotify"></a>
+        </div>
+        <p>Contacto: <a href="mailto:contacto@subterraneo.com">contacto@subterraneo.com</a></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Toggle del menú de navegación en móvil
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

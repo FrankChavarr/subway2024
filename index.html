@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subterráneo - Disco León</title>
+    <!-- Incluir la fuente Montserrat desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Enlace del ícono -->
+    <link rel="icon" href="icono.png" type="image/png">
+    
+    <!-- Open Graph Meta Tags para Social Cards -->
+    <meta property="og:title" content="Subterráneo - Disco León">
+    <meta property="og:description" content="¡Disco León llega pronto! Lanzamiento oficial el 30 de noviembre de 2024.">
+    <meta property="og:image" content="subte-1.jpg">
+    <meta property="og:url" content="https://subterraneomusic.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Subterráneo - Disco León">
+    <meta name="twitter:description" content="¡Disco León llega pronto! Lanzamiento oficial el 30 de noviembre de 2024.">
+    <meta name="twitter:image" content="subte-1.jpg">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4E923NB3HQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4E923NB3HQ');
+</script>
+</head>
+<body>
+
+    <!-- Contenedor principal con imagen de fondo -->
+    <div class="countdown-container">
+        <h1 class="title">¡Disco León llega pronto!</h1>
+        <p class="subtitle">Lanzamiento oficial el 30 de noviembre de 2024</p>
+        <div id="countdown" class="countdown">
+            <div class="time">
+                <span id="days" class="number">00</span>
+                <span class="label">Días</span>
+            </div>
+            <div class="time">
+                <span id="hours" class="number">00</span>
+                <span class="label">Horas</span>
+            </div>
+            <div class="time">
+                <span id="minutes" class="number">00</span>
+                <span class="label">Minutos</span>
+            </div>
+            <div class="time">
+                <span id="seconds" class="number">00</span>
+                <span class="label">Segundos</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script para la cuenta regresiva
+        const countdown = () => {
+            const countDate = new Date('November 30, 2024 00:00:00').getTime();
+            const now = new Date().getTime();
+            const gap = countDate - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const textDay = Math.floor(gap / day);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
+
+            document.getElementById('days').innerText = textDay;
+            document.getElementById('hours').innerText = textHour;
+            document.getElementById('minutes').innerText = textMinute;
+            document.getElementById('seconds').innerText = textSecond;
+        };
+
+        setInterval(countdown, 1000);
+    </script>
+</body>
+</html>

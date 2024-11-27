@@ -1,0 +1,221 @@
+/* Estilos generales de la página */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1d;
+  color: #ffffff;
+}
+
+/* Estilos del título destacado */
+.title-highlight {
+  font-size: 3rem;
+  color: #ffffff; /* Restauración del color rosa */
+  font-family: 'Arial', cursive; /* Restauración de la tipografía original */
+  margin-bottom: 10px;
+}
+
+/* Estilos del menú de navegación */
+.navbar {
+  background-color: #1a1a1d;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #ff00ff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  color: #ff00ff;
+  font-size: 1.8rem;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-toggle-icon {
+  width: 25px;
+  height: 2px;
+  background-color: #ffffff;
+  display: block;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  background-color: #ffffff;
+  transition: transform 0.3s, top 0.3s, bottom 0.3s;
+}
+
+.nav-toggle-icon::before {
+  top: -8px;
+}
+
+.nav-toggle-icon::after {
+  bottom: -8px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #00ccff;
+}
+
+/* Estilos de los botones del encabezado */
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: #ff00ff;
+}
+
+.btn-primary:hover {
+  background-color: #e600e6;
+}
+
+.btn-secondary {
+  background-color: #00ccff;
+}
+
+.btn-secondary:hover {
+  background-color: #00b2e6;
+}
+
+/* Estilos del header */
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  height:100vh; /* Restaurado a su tamaño original */
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.5);
+}
+
+/* Estilos de la sección "Sobre Subterráneo" */
+.about {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #ff00ff;
+}
+
+.about p {
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  font-size: 1.2rem;
+  color: #cccccc;
+}
+
+/* Estilos de la nueva sección "Ruta Subterránea" */
+.explore-map {
+  padding: 60px 20px;
+  background-color: #282828;
+  text-align: center;
+}
+
+.explore-map h2 {
+  font-size: 2rem;
+  color: #ff00ff;
+  margin-bottom: 20px;
+}
+
+.explore-map p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  color: #cccccc;
+}
+
+.btn-explore {
+  background-color: #00ccff;
+  padding: 14px 24px;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-explore:hover {
+  background-color: #00b2e6;
+}
+
+/* Estilos del pie de página */
+.footer {
+  padding: 20px;
+  background-color: #1a1a1d;
+  text-align: center;
+  color: #cccccc;
+}

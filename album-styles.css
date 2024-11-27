@@ -1,0 +1,225 @@
+/* Estilos Generales */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1a1a1d;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Estilos del Encabezado */
+.album-header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff00ff, #00ccff);
+    color: #ffffff;
+}
+
+.album-cover {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.album-header h1 {
+    font-size: 3rem;
+    margin: 10px 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.album-header p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+/* Lista de Canciones */
+.tracklist {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.tracklist h2 {
+    font-size: 2.5rem;
+    color: #ff00ff;
+    margin-bottom: 20px;
+}
+
+.tracklist ul {
+    list-style: none;
+    padding: 0;
+}
+
+.track {
+    background: #292929;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.track:hover {
+    transform: scale(1.05);
+    background: #3333ff;
+}
+
+.track h3 {
+    font-size: 1.5rem;
+    color: #00ccff;
+}
+
+.track p {
+    font-size: 1rem;
+    margin: 10px 0 20px;
+    color: #cccccc;
+}
+
+.btn-listen {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff00ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-listen:hover {
+    background-color: #00ccff;
+}
+
+/* Pie de Página */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #121212;
+}
+
+.social-links a {
+    margin: 0 10px;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+    transition: transform 0.3s;
+}
+
+.social-links img:hover {
+    transform: scale(1.1);
+}
+/* Estilos del Menú de Navegación */
+.navbar {
+    background-color: #1a1a1d;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999; /* Asegura que el menú esté siempre por encima del contenido */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #ff00ff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Añade una sombra para destacarlo */
+}
+
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    color: #ff00ff;
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-toggle-icon {
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: transform 0.3s, top 0.3s, bottom 0.3s;
+}
+
+.nav-toggle-icon::before {
+    top: -8px;
+}
+
+.nav-toggle-icon::after {
+    bottom: -8px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #00ccff;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #1a1a1d;
+        border-top: 1px solid #ff00ff;
+        padding: 20px 0;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 10px 20px;
+        text-align: center;
+    }
+}

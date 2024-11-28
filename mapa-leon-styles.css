@@ -1,0 +1,417 @@
+/* Estilos generales */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1a1a1d;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos del Menú de Navegación */
+.navbar {
+    background-color: #1a1a1d;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999; /* Asegura que el menú esté siempre por encima del contenido */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #ff6326;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Añade una sombra para destacarlo */
+}
+
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Para alinear a la izquierda */
+    padding-left: 20px; /* Ajusta el espacio desde el borde izquierdo */
+}
+
+.logo-img {
+    max-height: 40px; /* Ajusta el tamaño del logo según se vea mejor */
+    height: auto;
+    display: block;
+}
+
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-toggle-icon {
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: transform 0.3s, top 0.3s, bottom 0.3s;
+}
+
+.nav-toggle-icon::before {
+    top: -8px;
+}
+
+.nav-toggle-icon::after {
+    bottom: -8px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ff6326;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        right: 66px; /* Ajusta la distancia desde el margen derecho */
+        top: 25px; /* Ajusta la distancia desde la parte superior */
+        z-index: 10000; /* Asegura que el botón esté visible por encima de otros elementos */
+    }
+
+    .nav-toggle-icon {
+        background-color: #ffffff;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #1a1a1d;
+        border-top: 1px solid #ff6326;
+        padding: 20px 0;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    /* Alinear logo a la izquierda en móvil */
+    .nav-logo {
+        margin-right: auto;
+        padding-left: 0px; /* Añade espacio desde el margen izquierdo para alinearlo mejor */
+    }
+}
+
+/* Estilos para la ventana emergente de detalles de canción */
+.song-details {
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50); 
+    background: #ffffff;
+    padding: 20px; 
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+    max-width: 600px;
+    width: 90%;
+    max-height: 70vh;
+    overflow-y: scroll; 
+    font-family: 'Montserrat', sans-serif;
+    color: #333333;
+    text-align: center;
+    -webkit-overflow-scrolling: touch; /* Desplazamiento suave en dispositivos móviles */
+    box-sizing: border-box; /* Asegurar que el padding no agregue más al ancho total */
+}
+
+
+/* Ajustes específicos para móviles */
+@media (max-width: 768px) {
+    .song-details {
+        top: 50%; /* Mantener el centrado en la versión móvil */
+        left: 50%;
+        transform: translate(-50%, -50%); /* Centrar en el eje X y Y */
+        padding: 15px; /* Reducir un poco el padding para móviles */
+        width: 95%; /* Ocupa un poco más de la pantalla en móviles */
+        overflow-y: scroll; /* Asegurar que el desplazamiento siempre esté presente */
+    }
+
+    .song-details h2 {
+        font-size: 1.3rem; /* Tamaño más pequeño para móviles */
+        margin: 10px 0;
+    }
+}
+
+
+/* Personalización de la barra de desplazamiento para el popup */
+.song-details::-webkit-scrollbar {
+    width: 8px; /* Reducir el ancho de la barra de desplazamiento */
+}
+
+.song-details::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+
+.song-details::-webkit-scrollbar-thumb {
+    background: #ff6326; 
+    border-radius: 10px; 
+    border: 2px solid #ffffff;
+}
+
+.song-details::-webkit-scrollbar-thumb:hover {
+    background: #ff6326;
+}
+
+/* Título de la canción */
+.song-details h2 {
+    font-size: 1.5rem; /* Tamaño del título */
+    color: #ff6326;
+    margin-bottom: 10px;
+    text-align: center; /* Centrar el título */
+}
+
+
+#spotify-embed-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.song-history {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+/* Botón para descargar material relacionado */
+.download-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px; /* Reducir el tamaño del botón de descarga */
+    background-color: #ff6326;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem; /* Hacer el texto más pequeño */
+}
+
+.download-link:hover {
+    background-color: #ff6326;
+}
+
+.gift {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.gift-img {
+    width: 120px;  /* Anteriormente 60px, ahora más grande */
+    height: auto;
+    margin-top: 10px;  /* Aumentar el margen superior para dar un poco de espacio */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  /* Añadir una sombra para darle un poco de profundidad */
+    border-radius: 8px;  /* Bordes ligeramente redondeados */
+}
+
+
+/* Botón para cerrar la ventana emergente */
+.btn-close {
+    display: inline-block; /* Permitir centrado del botón */
+    padding: 8px 16px; /* Reducir tamaño del botón */
+    background-color: #ff6326;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    text-align: center;
+    margin-left: auto; /* Para centrar el botón */
+    margin-right: auto; /* Para centrar el botón */
+}
+
+/* Botón para cerrar al pasar el ratón */
+.btn-close:hover {
+    background-color: #ff6326;
+}
+
+/* Estilos de los puntos de las estaciones con animación de pulsación */
+.station-marker {
+    width: 15px;
+    height: 15px;
+    background-color: #ff6326;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    position: absolute;
+    animation: pulse 2s infinite;
+}
+
+/* Marcador para estaciones bloqueadas (gris apagado) */
+.station-marker.locked {
+    background-color: #888888; /* Gris apagado */
+    border: 2px solid #ffffff;
+    animation: none; /* Sin animación de pulso */
+    box-shadow: none !important; /* Asegura que no haya sombra */
+}
+
+/* Marcador para estaciones desbloqueadas (neón palpitante) */
+.station-marker.unlocked {
+    background-color: #ff6326; /* Neón palpitante */
+    border: 2px solid #ffffff;
+    animation: pulse 2s infinite;
+}
+
+.station-name {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 0.9rem;
+    text-align: center;
+}
+/* Estilos para el contenedor de la barra de progreso */
+.progress-bar-container {
+    width: 40%;                  /* Ancho del contenedor */
+    height: 20px;                /* Altura del contenedor */
+    background-color: #333;      /* Color de fondo */
+    border-radius: 10px;         /* Bordes redondeados */
+    margin: 20px auto;           /* Centrado horizontal */
+}
+
+/* Estilos para la barra de progreso */
+.progress-bar {
+    height: 100%;                /* La barra de progreso ocupa toda la altura */
+    background-color: #ff6326;   /* Color de la barra de progreso */
+    width: 0%;                  /* Ancho de la barra (puedes modificarlo dinámicamente) */
+    border-radius: 10px;         /* Bordes redondeados */
+    transition: width 0.5s ease; /* Transición para animar el cambio de ancho */
+}
+/* Ajuste para el mapa */
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.city-map {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ffffff;
+}
+
+/* Ajustes específicos para móviles */
+@media (max-width: 768px) {
+    #map {
+        height: 80vh; /* Ajustar el mapa para que ocupe la mayor parte de la pantalla */
+        width: 100%;
+    }
+}
+
+
+/* Estilos para el ícono de estación bloqueada (candado) */
+.locked-marker .lock-icon {
+    width: 24px;
+    height: 24px;
+    background-image: url('cadao.png'); /* Asegúrate de ajustar la ruta de la imagen */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Animación de pulsación y brillo */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px #ff6326, 0 0 10px #ff6326, 0 0 15px #ff6326;
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px #ff6326, 0 0 20px #ff6326, 0 0 25px #ff6326;
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px #ff6326, 0 0 10px #ff6326, 0 0 15px #ff6326;
+    }
+}
+
+/* Estilos del pie de página */
+.footer {
+    background-color: #1a1a1d;
+    padding: 20px;
+    text-align: center;
+    color: #cccccc;
+    font-size: 0.9rem;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .social-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  p {
+    margin: 10px 0 0 0;
+    color: #cccccc;
+  }
+  
+  

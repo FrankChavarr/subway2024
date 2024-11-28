@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es-ni">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta Subterránea - Disco León</title>
+    <!-- Enlace al archivo CSS personalizado -->
+    <link rel="stylesheet" href="mapa-leon-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="icono.png" type="image/png">
+    <!-- Incluyendo el CSS de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+
+        <!-- Enlace del ícono -->
+    <link rel="icon" href="icono.png" type="image/png">
+    
+    <!-- Open Graph Meta Tags para Social Cards -->
+    <meta property="og:title" content="Ruta Subterránea - Disco León">
+    <meta property="og:description" content="¡Disco León llega pronto! Lanzamiento oficial el 30 de noviembre de 2024.">
+    <meta property="og:image" content="subte-1.jpg">
+    <meta property="og:url" content="https://subterraneomusic.com/mapa-leon.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ruta Subterránea - Disco León">
+    <meta name="twitter:description" content="¡Disco León llega pronto! Lanzamiento oficial el 30 de noviembre de 2024.">
+    <meta name="twitter:image" content="subte-1.jpg">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4E923NB3HQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4E923NB3HQ');
+    </script>
+
+<style>
+    /* Estilos para personalizar los puntos */
+    .custom-marker {
+        width: 15px;
+        height: 15px;
+        background-color: #ff6326; /* Color rosado */
+        border-radius: 50%;
+        box-shadow: 0 0 10px #ff6326; /* Sombra neón */
+        position: relative; /* Para posicionar el candado */
+    }
+
+    .lock-icon {
+        width: 10px;
+        height: 10px;
+        background-image: url('candao.png'); /* Cambia esta ruta por la de tu imagen de candado */
+        background-size: cover;
+        position: absolute;
+        top: -5px; /* Ajusta la posición según sea necesario */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Estilos para la ventana emergente */
+    .song-details {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .btn-close {
+        background-color: #ff6326;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .btn-close:hover {
+        background-color: #ff6326;
+    }
+</style>
+</head>
+<body>
+
+<!-- Menú de Navegación -->
+<nav class="navbar">
+    <div class="nav-container">
+        <!-- Reemplazamos el texto del logo por la imagen del logo -->
+        <a href="index.html" class="nav-logo">
+            <img src="SUBTERRANEOLOGO.png" alt="Subterráneo Logo" class="logo-img">
+        </a>
+        <button class="nav-toggle" id="nav-toggle">
+            <span class="nav-toggle-icon"></span>
+        </button>
+        <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+            <li class="nav-item"><a href="album.html" class="nav-link">Disco León</a></li>
+            <li class="nav-item"><a href="mapa-leon.html" class="nav-link">Ruta Subterránea</a></li>
+            <li class="nav-item"><a href="band-page.html" class="nav-link">Biografía</a></li>
+            <li class="nav-item"><a href="store.html" class="nav-link">Tienda</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+    <!-- Sección del Mapa de León con el Subterráneo Imaginario -->
+    <section class="interactive-map" style="padding-top: 70px; text-align: center;">
+        <h1>Explora León con Disco León</h1>
+        <div id="map" class="map-container" style="width: 100%; height: 500px;"></div>
+    </section>
+
+ <!-- Barra de progreso -->
+<div class="progress-bar-container">
+    <div id="progress-bar" class="progress-bar"></div>
+</div>
+
+    <!-- Ventana Emergente de Detalles de Canción -->
+    <div class="song-details hidden">
+        <h2 id="song-title"></h2>
+        <div id="spotify-embed-container"></div> <!-- Contenedor para el iframe de Spotify -->
+        <button class="btn-close">Cerrar</button>
+    </div>
+       
+<!-- Ventana Emergente de Detalles de Canción -->
+<div class="song-details hidden">
+    <h2 id="song-title"></h2>
+    <div id="spotify-embed-container"></div> <!-- Contenedor para el iframe de Spotify -->
+    <div id="song-history" class="song-history"></div> <!-- Historia del lugar -->
+    <div id="download-material"></div> <!-- Material descargable -->
+    <div id="gift-material"></div> <!-- Material de regalo -->
+    <button class="btn-close">Cerrar</button>
+</div>
+
+
+    <!-- Incluyendo el script de Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <!-- Enlace al archivo JavaScript personalizado -->
+    <script src="mapa-leon-scripts.js"></script>
+
+    <script>
+        // Toggle del menú de navegación en móvil
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+
+
+    <!-- Pie de página -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="social-links">
+            <a href="https://www.instagram.com/subterraneoni/" target="_blank"><img src="logo_ig.svg" alt="Instagram" class="social-icon"></a>
+            <a href="https://open.spotify.com/intl-es/artist/4j7E7qZ1spg0ysrBhAwFdf?si=lIIH2FeLTzqSjG_rDJkvtA" target="_blank"><img src="logo_spotify.svg" alt="Spotify" class="social-icon"></a>
+            <a href="https://www.youtube.com/@subterraneonicaragua" target="_blank"><img src="logo_yt.svg" alt="YouTube" class="social-icon"></a>
+            <a href="https://www.tiktok.com/@subterraneoni" target="_blank"><img src="logo_tiktok.svg" alt="TikTok" class="social-icon"></a>
+        </div>
+        <p>&copy; 2024 Subterráneo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+    
+</body>
+</html>

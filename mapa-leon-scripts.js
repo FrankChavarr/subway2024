@@ -46,10 +46,11 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/
 
 
 // Array de estaciones con coordenadas, datos de Spotify y nueva información
-const estaciones = [
+var estaciones = [
     { 
         id: 'station4',
-        coordinates: [12.4338879, -86.8803334],
+        estado:true,
+        coordinates: [12.433747850816363, -86.88047674554787],
         song: 'Toda la noche', 
         spotify: 'https://open.spotify.com/embed/track/3Sjp5ZVLKzLqTi8ll8IEeP?utm_source=generator',
         historia: 'En este momento te encuentras en el majestuoso Teatro José de la Cruz Mena, un ícono cultural de León, Nicaragua, y un homenaje vivo al legado del célebre compositor que lleva su nombre. Inaugurado en 1905, este teatro se alza como un testigo de la rica historia artística de la ciudad. Con su arquitectura neoclásica y su elegante fachada, ha sido el escenario de innumerables presentaciones de ópera, teatro y música que han cautivado a generaciones. Cada rincón del teatro guarda ecos de aplausos y melodías que conectan el pasado con el presente, haciendo de este espacio una parada obligatoria para los amantes de la cultura y la historia.',
@@ -93,6 +94,7 @@ Bailar con vos por toda la ciudad
     },
     { 
         id: 'station5',
+        estado:true,
         coordinates: [12.434932697960473, -86.87882525748682],
         song: 'Disco León', 
         spotify: 'https://open.spotify.com/embed/track/0gFGBpd6LiPLFMVidC9wg0?utm_source=generator',
@@ -158,6 +160,7 @@ Bailar con vos por toda la ciudad
     },
     { 
         id: 'station2',
+        estado:true,
         coordinates: [12.4367756,-86.8790378], 
         song: 'Amanecer', 
         spotify: 'https://open.spotify.com/embed/track/0Z59Ert8jWHxIcTjd7yxDi?utm_source=generator',
@@ -205,6 +208,7 @@ Bailar con vos por toda la ciudad
     },
     { 
         id: 'station1',
+        estado:true,
         coordinates: [12.4346107, -86.8816895], 
         song: 'Funky Love', 
         spotify: 'https://open.spotify.com/embed/track/6aQX82GweFeq01KG1qO0bO?utm_source=generator',
@@ -274,7 +278,8 @@ Vos sos mi Funky Love
     },
     { 
         id: 'station7',
-        coordinates: [12.431810193655433, -86.8880414915001], 
+        estado:true,
+        coordinates: [12.43359223077556, -86.89552607333378], 
         song: 'El Vuelo', 
         spotify: 'https://open.spotify.com/embed/track/5JvSykCQFREhciHEVyHuYq?utm_source=generator',
         historia: `Bienvenido a la Plaza de Sutiaba, un espacio emblemático que refleja la rica herencia cultural esta comunidad.
@@ -326,6 +331,7 @@ Vos sos mi Funky Love
     },
     {
         id: 'station6', 
+        estado:true,
         coordinates: [12.41776514306273, -86.86961393544814], 
         song: 'Lavanda', 
         spotify: 'https://open.spotify.com/embed/track/1RR4Ssmc640PaBIm8dEfeb?utm_source=generator',
@@ -344,6 +350,7 @@ Vos sos mi Funky Love
     },
     { 
         id: 'station3',
+        estado:true,
         coordinates: [12.431925482787864, -86.87884519510295], 
         song: 'La Pega', 
         spotify: 'https://open.spotify.com/embed/track/5H3yKYaPa70nsn7vtVozoo?utm_source=generator',
@@ -377,6 +384,19 @@ Vos sos mi Funky Love
         descarga: 'material/la_pega_subterraneo.mp3',
     }
 ];
+
+
+// Obtener las estaciones del localStorage y convertirlas de nuevo a un objeto
+const estacionesGuardadas = JSON.parse(localStorage.getItem('estacionesLocales'));
+
+// Verificar si se cargó correctamente
+if (estacionesGuardadas) {
+    console.log(estacionesGuardadas);
+} else {
+    
+    localStorage.setItem("estacionesLocales", JSON.stringify(estaciones));
+}
+
 
 // Personalización del ícono del marcador (círculo rosado con sombra neón)
 const unlockedMarker = L.divIcon({
@@ -488,34 +508,51 @@ function obtenerUserId(callback) {
 }
 
 // Añadir los marcadores al mapa solo una vez
-estaciones.forEach(estacion => {
-    const marker = L.marker(estacion.coordinates, { icon: lockedMarker }).addTo(map);
-    marker.isLocked = true;  // Inicialmente, todos los marcadores están bloqueados
+function actualizarMarcadores() {
+    
+    
+    // Eliminar todos los marcadores del mapa
+    stationMarkers.forEach(marker => map.removeLayer(marker));
 
-    // Agregar evento de clic al marcador
-    marker.on('click', function () {
-        if (!marker.isLocked) {
-            document.getElementById('song-title').innerText = estacion.song;
-            document.getElementById('spotify-embed-container').innerHTML = `<iframe style="border-radius:12px; width: 100%; height: 352px;" src="${estacion.spotify}" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
-            document.getElementById('song-history').innerText = `Sobre del lugar: ${estacion.historia}`;
-    // Añadir letra de la canción
-    document.getElementById('song-lyrics').innerText = `${estacion.letra}`;
-            document.getElementById('download-material').innerHTML = `
-            <a href="${estacion.descarga}" download class="download-link">Descargar Mp3 Grátis</a>
-        `;
-            document.querySelector('.song-details').classList.remove('hidden');
-        } else {
-            alert(`Estación ${estacion.song} está bloqueada. Acércate más para desbloquearla.`);
-        }
+
+    // Recuperar el objeto y convertirlo de nuevo a JSON
+    estaciones = JSON.parse(localStorage.getItem("estacionesLocales"));
+
+    estaciones.forEach(estacion => {
+        const marker = L.marker(estacion.coordinates, { icon: lockedMarker }).addTo(map);
+        //marker.isLocked = true;  // Inicialmente, todos los marcadores están bloqueados
+        marker.isLocked = estacion.estado;
+        if(!estacion.estado)
+            marker.setIcon(unlockedMarker);
+    
+        // Agregar evento de clic al marcador
+        marker.on('click', function () {
+            if (!marker.isLocked) {
+                document.getElementById('song-title').innerText = estacion.song;
+                document.getElementById('spotify-embed-container').innerHTML = `<iframe style="border-radius:12px; width: 100%; height: 352px;" src="${estacion.spotify}" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+                document.getElementById('song-history').innerText = `Sobre del lugar: ${estacion.historia}`;
+        // Añadir letra de la canción
+        document.getElementById('song-lyrics').innerText = `${estacion.letra}`;
+                document.getElementById('download-material').innerHTML = `
+                <a href="${estacion.descarga}" download class="download-link">Descargar Mp3 Grátis</a>
+            `;
+                document.querySelector('.song-details').classList.remove('hidden');
+            } else {
+                alert(`Estación ${estacion.song} está bloqueada. Acércate más para desbloquearla.`);
+            }
+        });
+    // Cerrar el pop-up
+    document.querySelector('.btn-close').addEventListener('click', function () {
+        document.querySelector('.song-details').classList.add('hidden');
+        document.getElementById('spotify-embed-container').innerHTML = ''; // Limpia el iframe al cerrar
     });
-// Cerrar el pop-up
-document.querySelector('.btn-close').addEventListener('click', function () {
-    document.querySelector('.song-details').classList.add('hidden');
-    document.getElementById('spotify-embed-container').innerHTML = ''; // Limpia el iframe al cerrar
-});
-    // Guardar el marcador en el array para su posterior actualización
-    stationMarkers.push(marker);
-});
+        // Guardar el marcador en el array para su posterior actualización
+        stationMarkers.push(marker);
+    });
+}
+actualizarMarcadores();
+actualizarProgresoBarra();
+
 
 // Función para verificar proximidad y actualizar marcadores
 const proximityRadius = 30;
@@ -524,11 +561,20 @@ function checkProximity(userLat, userLng) {
         const estacion = estaciones[index];
         const distance = map.distance([userLat, userLng], estacion.coordinates);
 
-        // Actualizar el estado de bloqueo/desbloqueo y el ícono del marcador
+        // Actualizar el estado de desbloqueo y el ícono del marcador
         if (distance <= proximityRadius) {
             if (marker.isLocked) {
                 marker.setIcon(unlockedMarker);
                 marker.isLocked = false;
+
+                estaciones[index].estado = false;
+
+                // Convertir el objeto a una cadena JSON y guardarlo
+                localStorage.removeItem("estacionesLocales");
+                localStorage.setItem("estacionesLocales", JSON.stringify(estaciones));
+
+                actualizarMarcadores();
+                actualizarProgresoBarra();
             }
         //   
         } 
@@ -536,6 +582,13 @@ function checkProximity(userLat, userLng) {
     })
 }
 
+// Definir un ícono personalizado para la ubicación del usuario
+const userIcon = L.icon({
+    iconUrl: 'esedesubterraneo.png', // Cambia esto por la ruta de tu imagen
+    iconSize: [40, 40], // Tamaño del ícono [ancho, alto]
+    iconAnchor: [20, 40], // Punto del ícono que se posicionará en la ubicación [x, y]
+    popupAnchor: [0, -40], // Punto donde se abrirá el popup (si usas uno)
+});
 // Obtener la ubicación en tiempo real del usuario y agregar un marcador
 let userMarker;
 let firstUpdate = true;
@@ -590,33 +643,10 @@ function actualizarProgresoBarra() {
     // Calcula el porcentaje de progreso basado en las estaciones desbloqueadas
     const totalEstaciones = estaciones.length;
     const estacionesDesbloqueadas = stationMarkers.filter(marker => !marker.isLocked).length;
-    const progreso = (estacionesDesbloqueadas / totalEstaciones) * 100;
+    const progreso = (estacionesDesbloqueadas / totalEstaciones) * 7;
 
     // Actualizar la barra de progreso con el nuevo valor
     const progressBar = document.getElementById('progress-bar');
     progressBar.style.width = progreso + '%'; // Establece el ancho de la barra
 }
 
-// Llamar a la función para actualizar la barra después de comprobar la proximidad
-function checkProximity(userLat, userLng) {
-    stationMarkers.forEach((marker, index) => {
-        const estacion = estaciones[index];
-        const distance = map.distance([userLat, userLng], estacion.coordinates);
-
-        // Actualizar el estado de bloqueo/desbloqueo y el ícono del marcador
-        if (distance <= proximityRadius) {
-            if (marker.isLocked) {
-                marker.setIcon(unlockedMarker);
-                marker.isLocked = false;
-            }
-        } else {
-            if (!marker.isLocked) {
-                marker.setIcon(lockedMarker);
-                marker.isLocked = true;
-            }
-        }
-    });
-
-    // Después de comprobar la proximidad, actualizamos la barra de progreso
-    actualizarProgresoBarra();
-}

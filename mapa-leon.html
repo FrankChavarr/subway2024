@@ -17,8 +17,8 @@
     
     <!-- Open Graph Meta Tags para Social Cards -->
     <meta property="og:title" content="Ruta Subterránea - Disco León">
-    <meta property="og:description" content="¡Disco León llega pronto! Lanzamiento oficial el 30 de noviembre de 2024.">
-    <meta property="og:image" content="subte-1.jpg">
+    <meta property="og:description" content="Subterráneo es la vibrante esencia de León, Nicaragua, transformada en música.">
+    <meta property="og:image" content="bio.jpg">
     <meta property="og:url" content="https://subterraneomusic.com/mapa-leon.html">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_ES">
@@ -26,8 +26,8 @@
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ruta Subterránea - Disco León">
-    <meta name="twitter:description" content="¡Disco León llega pronto! Lanzamiento oficial el 30 de noviembre de 2024.">
-    <meta name="twitter:image" content="subte-1.jpg">
+    <meta name="twitter:description" content="Subterráneo es la vibrante esencia de León, Nicaragua, transformada en música.">
+    <meta name="twitter:image" content="bio.jpg">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4E923NB3HQ"></script>
@@ -105,9 +105,9 @@
         </button>
         <ul class="nav-menu" id="nav-menu">
             <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-            <li class="nav-item"><a href="album.html" class="nav-link">Disco León</a></li>
-            <li class="nav-item"><a href="mapa-leon.html" class="nav-link">Ruta Subterránea</a></li>
             <li class="nav-item"><a href="band-page.html" class="nav-link">Biografía</a></li>
+            <li class="nav-item"><a href="mapa-leon.html" class="nav-link">Ruta Subterráneo</a></li>
+            <li class="nav-item"><a href="album.html" class="nav-link">Disco León</a></li>
             <li class="nav-item"><a href="store.html" class="nav-link">Tienda</a></li>
         </ul>
     </div>
@@ -125,22 +125,17 @@
     <div id="progress-bar" class="progress-bar"></div>
 </div>
 
-    <!-- Ventana Emergente de Detalles de Canción -->
-    <div class="song-details hidden">
-        <h2 id="song-title"></h2>
-        <div id="spotify-embed-container"></div> <!-- Contenedor para el iframe de Spotify -->
-        <button class="btn-close">Cerrar</button>
-    </div>
        
 <!-- Ventana Emergente de Detalles de Canción -->
 <div class="song-details hidden">
     <h2 id="song-title"></h2>
     <div id="spotify-embed-container"></div> <!-- Contenedor para el iframe de Spotify -->
     <div id="song-history" class="song-history"></div> <!-- Historia del lugar -->
+    <div id="song-lyrics" class="song-lyrics"></div> <!-- Letra de la canción -->
     <div id="download-material"></div> <!-- Material descargable -->
-    <div id="gift-material"></div> <!-- Material de regalo -->
     <button class="btn-close">Cerrar</button>
 </div>
+
 
 
     <!-- Incluyendo el script de Leaflet -->
@@ -168,6 +163,35 @@
         <p>&copy; 2024 Subterráneo. Todos los derechos reservados.</p>
     </div>
 </footer>
-    
+
+    <!-- Botón flotante para instrucciones -->
+<div class="floating-button" id="instructions-button">?</div>
+
+<!-- Menú de instrucciones -->
+<div class="instructions-menu hidden" id="instructions-menu">
+    <h2>Instrucciones</h2>
+    <p>1. Haz clic en los puntos del mapa para explorar diferentes ubicaciones.</p>
+    <p>2. Cada punto contiene una canción y su historia asociada.</p>
+    <p>3. Usa el botón "Cerrar" para ocultar información adicional.</p>
+    <button class="btn-close-instructions" id="close-instructions">Cerrar</button>
+</div>
+
+<script>
+    // Referencias a elementos
+    const instructionsButton = document.getElementById('instructions-button');
+    const instructionsMenu = document.getElementById('instructions-menu');
+    const closeInstructions = document.getElementById('close-instructions');
+
+    // Mostrar el menú de instrucciones
+    instructionsButton.addEventListener('click', () => {
+        instructionsMenu.classList.toggle('hidden');
+    });
+
+    // Ocultar el menú de instrucciones
+    closeInstructions.addEventListener('click', () => {
+        instructionsMenu.classList.add('hidden');
+    });
+</script>
+
 </body>
 </html>

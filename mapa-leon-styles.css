@@ -414,4 +414,80 @@ body {
     color: #cccccc;
   }
   
-  
+  .song-relation,
+.song-lyrics {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #555555;
+    text-align: left; /* Alinear texto a la izquierda para mejor lectura */
+}
+
+.song-lyrics {
+    font-style: italic; /* Opcional: darle un estilo distintivo a las letras */
+}
+/* Estilos para el botón flotante */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff6326;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.floating-button:hover {
+    background-color: #e55422;
+}
+
+/* Estilos para el menú de instrucciones */
+.instructions-menu {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #e55422(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.instructions-menu h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.instructions-menu p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.btn-close-instructions {
+    background-color: #ff6326;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-close-instructions:hover {
+    background-color: #e55422;
+}
+
+/* Ocultar el menú inicialmente */
+.hidden {
+    display: none;
+}

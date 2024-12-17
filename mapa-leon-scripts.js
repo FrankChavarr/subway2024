@@ -538,8 +538,23 @@ function actualizarMarcadores() {
             `;
                 document.querySelector('.song-details').classList.remove('hidden');
             } else {
-                alert(`Estación ${estacion.song} está bloqueada. Acércate más para desbloquearla.`);
-            }
+                Swal.fire({
+                    icon: 'info', // Icono (info, success, error, question)
+                    title: '¡Estación Bloqueada!',
+                    text: `La estación "${estacion.song}" está bloqueada. Acércate más para desbloquearla.`,
+                    confirmButtonText: 'Entendido', // Texto del botón de confirmación
+                    confirmButtonColor: '#ff6326',
+                    background: '#f8f9fa', // Fondo del popup
+                    color: '#333', // Color del texto
+                    showCloseButton: true, // Botón de cerrar
+                    position: 'center', // Posición del popup
+                    customClass: {
+                        popup: 'my-popup-class', // Clase personalizada (opcional)
+                        icon: 'my-icon-class',
+                    }
+                });
+            };
+            
         });
     // Cerrar el pop-up
     document.querySelector('.btn-close').addEventListener('click', function () {
@@ -584,12 +599,12 @@ function checkProximity(userLat, userLng) {
 
 // Definir un ícono personalizado para la ubicación del usuario
 const userIcon = L.icon({
-    iconUrl: 'esedesubterraneo.png', // Cambia esto por la ruta de tu imagen
-    iconSize: [40, 40], // Tamaño del ícono [ancho, alto]
-    iconAnchor: [20, 40], // Punto del ícono que se posicionará en la ubicación [x, y]
-    popupAnchor: [0, -40], // Punto donde se abrirá el popup (si usas uno)
+    iconUrl: 'esedesubterraneo.png', // Ruta de tu imagen
+    iconSize: [40, 40],      // Tamaño del ícono [ancho, alto]
+    iconAnchor: [20, 40],    // Punto de anclaje del ícono [x, y]
+    popupAnchor: [0, -40],   // Punto donde se abre el popup
 });
-// Obtener la ubicación en tiempo real del usuario y agregar un marcador
+
 let userMarker;
 let firstUpdate = true;
 
@@ -604,13 +619,13 @@ obtenerUserId(function (userId) {
 
                 // Actualizar o crear el marcador de la ubicación del usuario
                 if (userMarker) {
-                    userMarker.setLatLng([userLat, userLng]); // Actualiza la ubicación del marcador sin crear uno nuevo
+                    userMarker.setLatLng([userLat, userLng]); // Actualiza la ubicación del marcador
                 } else {
-                    userMarker = L.marker([userLat, userLng]).addTo(map); // Crea el marcador en la primera ubicación
+                    // Crear el marcador con el ícono personalizado
+                    userMarker = L.marker([userLat, userLng], { icon: userIcon }).addTo(map);
                 }
 
                 // Centrar el mapa en la ubicación del usuario si es la primera actualización
-                // o si se ha desplazado una distancia significativa
                 if (firstUpdate || map.distance(userMarker.getLatLng(), [userLat, userLng]) > 50) {
                     map.setView([userLat, userLng], 13, { animate: true });
                     firstUpdate = false;
@@ -622,10 +637,15 @@ obtenerUserId(function (userId) {
                 // Obtener las estaciones desbloqueadas
                 const unlockedStations = stationMarkers
                     .filter(marker => !marker.isLocked)
-                    .map(marker => estaciones[stationMarkers.indexOf(marker)].id);
-
-                // Guardar el progreso en IndexedDB
-                guardarProgreso(userId, unlockedStations);
+                    .map(marker => {
+                        const index = stationMarkers.indexOf(marker);
+                        // Verificar que el índice es válido en el arreglo de estaciones
+                        if (index >= 0 && estaciones[index]) {
+                            return estaciones[index].id;
+                        }
+                        return null; // Si el índice no es válido, devolver null
+                    })
+                    .filter(id => id !== null); // Eliminar valores nulos
             },
             function () {
                 alert('No se pudo obtener la ubicación.');
@@ -637,16 +657,42 @@ obtenerUserId(function (userId) {
     }
 });
 
-
 // Función para actualizar la barra de progreso
 function actualizarProgresoBarra() {
-    // Calcula el porcentaje de progreso basado en las estaciones desbloqueadas
+    // Asegurarse de que no se ejecute varias veces sin necesidad
     const totalEstaciones = estaciones.length;
     const estacionesDesbloqueadas = stationMarkers.filter(marker => !marker.isLocked).length;
-    const progreso = (estacionesDesbloqueadas / totalEstaciones) * 7;
 
-    // Actualizar la barra de progreso con el nuevo valor
+    // Calculamos el progreso de las estaciones desbloqueadas
+    const progreso = (estacionesDesbloqueadas / totalEstaciones) * 100;
+
+    console.log("Total Estaciones: ", totalEstaciones);  // Verificar total
+    console.log("Estaciones Desbloqueadas: ", estacionesDesbloqueadas);  // Verificar desbloqueadas
+    console.log("Progreso Calculado: ", progreso);  // Verificar progreso calculado
+
+    // Evitar que la barra se actualice si el valor es el mismo
     const progressBar = document.getElementById('progress-bar');
-    progressBar.style.width = progreso + '%'; // Establece el ancho de la barra
+    let currentWidth = parseFloat(progressBar.style.width || '0');
+
+    // Si el progreso actual es cercano al nuevo valor, no hacer nada
+    if (Math.abs(currentWidth - progreso) < 0.1) {
+        console.log('Progreso ya actualizado');
+        return;
+    }
+
+    // Animación gradual para actualizar el progreso
+    let step = (progreso - currentWidth) / 10; // Controlar la velocidad de la animación
+    let interval = setInterval(() => {
+        currentWidth += step;
+
+        // Detener la animación cuando llegamos al progreso final
+        if (Math.abs(currentWidth - progreso) < 0.1) {
+            currentWidth = progreso;
+            clearInterval(interval); // Detener la animación
+        }
+
+        // Limitar la barra para que no se pase del valor máximo (100%)
+        progressBar.style.width = `${Math.min(Math.max(currentWidth, 0), 100)}%`;
+    }, 50); // Intervalo pequeño para animación más fluida
 }
 

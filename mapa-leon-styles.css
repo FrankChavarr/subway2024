@@ -325,7 +325,7 @@ body {
     background-color: #ff6326;   /* Color de la barra de progreso */
     width: 0%;                  /* Ancho de la barra (puedes modificarlo dinámicamente) */
     border-radius: 10px;         /* Bordes redondeados */
-    transition: width 0.5s ease; /* Transición para animar el cambio de ancho */
+    transition: width 1.0s ease; /* Transición para animar el cambio de ancho */
 }
 /* Ajuste para el mapa */
 .map-container {
@@ -348,17 +348,6 @@ body {
         height: 80vh; /* Ajustar el mapa para que ocupe la mayor parte de la pantalla */
         width: 100%;
     }
-}
-
-
-/* Estilos para el ícono de estación bloqueada (candado) */
-.locked-marker .lock-icon {
-    width: 24px;
-    height: 24px;
-    background-image: url('cadao.png'); /* Asegúrate de ajustar la ruta de la imagen */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 /* Animación de pulsación y brillo */
@@ -490,4 +479,17 @@ body {
 /* Ocultar el menú inicialmente */
 .hidden {
     display: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.my-icon-class {
+    color: #e55422; /* Cambia este color según tu preferencia */
 }

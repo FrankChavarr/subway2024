@@ -41,7 +41,7 @@ const map = L.map('map').setView([12.4278204,-86.882466], 14); // León, Nicarag
 // Cargar el mapa satelital desde Esri
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     maxZoom: 18,
-    attribution: '© Esri'
+    attribution: '© Subterráneo'
 }).addTo(map);
 
 
@@ -161,7 +161,7 @@ Bailar con vos por toda la ciudad
     { 
         id: 'station2',
         estado:true,
-        coordinates: [12.4367756,-86.8790378], 
+        coordinates: [12.436971160105697, -86.87904716456198], 
         song: 'Amanecer', 
         spotify: 'https://open.spotify.com/embed/track/0Z59Ert8jWHxIcTjd7yxDi?utm_source=generator',
         historia: `Bienvenido al histórico Paraninfo de la Universidad Nacional Autónoma de Nicaragua, León (UNAN-León), un emblemático edificio que ha sido testigo de momentos clave en la historia de Nicaragua. Fundada en 1812, la UNAN-León es la universidad más antigua del país y ha sido un centro de conocimiento y cultura durante más de dos siglos.
@@ -209,7 +209,7 @@ Bailar con vos por toda la ciudad
     { 
         id: 'station1',
         estado:true,
-        coordinates: [12.4346107, -86.8816895], 
+        coordinates: [12.434871202223942, -86.88188993267576], 
         song: 'Funky Love', 
         spotify: 'https://open.spotify.com/embed/track/6aQX82GweFeq01KG1qO0bO?utm_source=generator',
         historia: `Bienvenido al Centro de Arte Fundación Ortiz-Gurdián, un tesoro cultural en el corazón de la ciudad. Este museo, inaugurado en el año 2000, está compuesto de seis casas coloniales restauradas que datan de los siglos XVIII y XIX, cada una con su propia historia y arquitectura distintiva.
@@ -279,7 +279,7 @@ Vos sos mi Funky Love
     { 
         id: 'station7',
         estado:true,
-        coordinates: [12.43359223077556, -86.89552607333378], 
+        coordinates: [12.433809409442372, -86.89511938526172], 
         song: 'El Vuelo', 
         spotify: 'https://open.spotify.com/embed/track/5JvSykCQFREhciHEVyHuYq?utm_source=generator',
         historia: `Bienvenido a la Plaza de Sutiaba, un espacio emblemático que refleja la rica herencia cultural esta comunidad.
@@ -332,7 +332,7 @@ Vos sos mi Funky Love
     {
         id: 'station6', 
         estado:true,
-        coordinates: [12.41776514306273, -86.86961393544814], 
+        coordinates: [12.417905946518573, -86.8696381902465], 
         song: 'Lavanda', 
         spotify: 'https://open.spotify.com/embed/track/1RR4Ssmc640PaBIm8dEfeb?utm_source=generator',
         historia: `Bienvenido al Parque Centenario Rubén Darío, un emblemático espacio que honra al insigne poeta nicaragüense Rubén Darío, nacido en León. Inaugurado en el 2016 en conmemoración del centenario de su fallecimiento. El parque destaca por su majestuoso pórtico con una placa-retrato de Darío y un vibrante jardín. 
@@ -351,7 +351,7 @@ Vos sos mi Funky Love
     { 
         id: 'station3',
         estado:true,
-        coordinates: [12.431925482787864, -86.87884519510295], 
+        coordinates: [12.432141701392554, -86.87881244517389], 
         song: 'La Pega', 
         spotify: 'https://open.spotify.com/embed/track/5H3yKYaPa70nsn7vtVozoo?utm_source=generator',
         historia: `En este momento te encuentras en la antigua Cárcel La 21, hoy convertida en el Museo de Mitos y Leyendas de León. Construida en 1921, su nombre proviene de ese mismo año. Inicialmente, funcionó como prisión común, pero tras la muerte del dictador Anastasio Somoza García en 1956, se transformó en un centro de detención y tortura para opositores al régimen somocista. Este oscuro capítulo de la historia nicaragüense perduró hasta 1979, cuando las fuerzas Sandinistas liberaron la ciudad. Hoy, las celdas de La 21 albergan exposiciones que cuentan las leyendas y tradiciones de la ciudad, ofreciendo una visión amplia de la cultura leonesa`,
@@ -413,74 +413,6 @@ const lockedMarker = L.divIcon({
 // Array para almacenar los marcadores de las estaciones
 let stationMarkers = [];
 
-// Inicialización de IndexedDB
-const dbName = 'StationProgressDB';
-const storeName = 'unlockedStations';
-
-function initIndexedDB() {
-    const request = indexedDB.open(dbName, 1);
-    request.onupgradeneeded = function (event) {
-        const db = event.target.result;
-        if (!db.objectStoreNames.contains(storeName)) {
-            db.createObjectStore(storeName, { keyPath: 'id' });
-        }
-        console.log('IndexedDB inicializada.');
-    };
-    request.onerror = function (event) {
-        console.error('Error al abrir IndexedDB:', event.target.errorCode);
-    };
-}
-initIndexedDB();
-
-// Función para guardar progreso
-function guardarProgreso(userId, unlockedStations) {
-    console.log('Guardando progreso para ID:', userId);
-    const request = indexedDB.open(dbName);
-    request.onsuccess = function (event) {
-        const db = event.target.result;
-        const transaction = db.transaction(storeName, 'readwrite');
-        const store = transaction.objectStore(storeName);
-
-        const data = { id: userId, stations: unlockedStations };
-        const putRequest = store.put(data);
-        putRequest.onsuccess = function () {
-            console.log('Progreso guardado:', data);
-        };
-        putRequest.onerror = function (event) {
-            console.error('Error al guardar progreso:', event.target.error);
-        };
-    };
-    request.onerror = function (event) {
-        console.error('Error al abrir IndexedDB para guardar:', event.target.errorCode);
-    };
-}
-
-// Función para cargar progreso
-function cargarProgreso(userId, callback) {
-    console.log('Cargando progreso para ID:', userId);
-    const request = indexedDB.open(dbName);
-    request.onsuccess = function (event) {
-        const db = event.target.result;
-        const transaction = db.transaction(storeName, 'readonly');
-        const store = transaction.objectStore(storeName);
-
-        const getRequest = store.get(userId);
-        getRequest.onsuccess = function (event) {
-            const result = event.target.result;
-            console.log('Progreso cargado:', result);
-            callback(result ? result.stations : []);
-        };
-        getRequest.onerror = function (event) {
-            console.error('Error al cargar progreso:', event.target.error);
-            callback([]);
-        };
-    };
-    request.onerror = function (event) {
-        console.error('Error al abrir IndexedDB para cargar:', event.target.errorCode);
-        callback([]);
-    };
-}
-
 // Función para obtener un userId único
 function obtenerUserId(callback) {
     const storedId = localStorage.getItem('userId');
@@ -539,7 +471,7 @@ function actualizarMarcadores() {
                 document.querySelector('.song-details').classList.remove('hidden');
             } else {
                 Swal.fire({
-                    icon: 'info', // Icono (info, success, error, question)
+                    icon: 'warning', // Icono (info, success, error, question)
                     title: '¡Estación Bloqueada!',
                     text: `La estación "${estacion.song}" está bloqueada. Acércate más para desbloquearla.`,
                     confirmButtonText: 'Entendido', // Texto del botón de confirmación
@@ -553,8 +485,7 @@ function actualizarMarcadores() {
                         icon: 'my-icon-class',
                     }
                 });
-            };
-            
+            };    
         });
     // Cerrar el pop-up
     document.querySelector('.btn-close').addEventListener('click', function () {
@@ -564,13 +495,14 @@ function actualizarMarcadores() {
         // Guardar el marcador en el array para su posterior actualización
         stationMarkers.push(marker);
     });
+    actualizarProgresoBarra();
 }
 actualizarMarcadores();
-actualizarProgresoBarra();
+//actualizarProgresoBarra();
 
 
 // Función para verificar proximidad y actualizar marcadores
-const proximityRadius = 30;
+const proximityRadius = 40;
 function checkProximity(userLat, userLng) {
     stationMarkers.forEach((marker, index) => {
         const estacion = estaciones[index];
@@ -589,7 +521,7 @@ function checkProximity(userLat, userLng) {
                 localStorage.setItem("estacionesLocales", JSON.stringify(estaciones));
 
                 actualizarMarcadores();
-                actualizarProgresoBarra();
+                //actualizarProgresoBarra();
             }
         //   
         } 
@@ -626,10 +558,10 @@ obtenerUserId(function (userId) {
                 }
 
                 // Centrar el mapa en la ubicación del usuario si es la primera actualización
-                if (firstUpdate || map.distance(userMarker.getLatLng(), [userLat, userLng]) > 50) {
-                    map.setView([userLat, userLng], 13, { animate: true });
-                    firstUpdate = false;
-                }
+                //if (firstUpdate || map.distance(userMarker.getLatLng(), [userLat, userLng]) > 50) {
+                    //map.setView([userLat, userLng], 13, { animate: true });
+                    //firstUpdate = false;
+                //}
 
                 // Verificar la proximidad del usuario a las estaciones
                 checkProximity(userLat, userLng);
@@ -661,10 +593,13 @@ obtenerUserId(function (userId) {
 function actualizarProgresoBarra() {
     // Asegurarse de que no se ejecute varias veces sin necesidad
     const totalEstaciones = estaciones.length;
-    const estacionesDesbloqueadas = stationMarkers.filter(marker => !marker.isLocked).length;
+    const estacionesGuardadas = JSON.parse(localStorage.getItem('estacionesLocales'));
+    const estacionesDesbloqueadas = estacionesGuardadas.filter(marker => !marker.estado).length;
 
     // Calculamos el progreso de las estaciones desbloqueadas
     const progreso = (estacionesDesbloqueadas / totalEstaciones) * 100;
+
+    // agregar animación final.
 
     console.log("Total Estaciones: ", totalEstaciones);  // Verificar total
     console.log("Estaciones Desbloqueadas: ", estacionesDesbloqueadas);  // Verificar desbloqueadas

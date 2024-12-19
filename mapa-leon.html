@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruta Subterránea - Disco León</title>
+    <title>Explora la Ruta Subterráneo: Música y Premios Exclusivos</title>
+    <meta name="description" content="Explora la Ruta Subterráneo y desbloquea estaciones únicas con música, historias y premios exclusivos del álbum Disco León. ¡Conviértete en un explorador musical!">
     <!-- Enlace al archivo CSS personalizado -->
     <link rel="stylesheet" href="mapa-leon-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -117,8 +118,12 @@
     <!-- Sección del Mapa de León con el Subterráneo Imaginario -->
     <section class="interactive-map" style="padding-top: 70px; text-align: center;">
         <h1>Explora León con Disco León</h1>
-        <div id="map" class="map-container" style="width: 100%; height: 500px;"></div>
+        <div id="map" class="map-container" style="width: 95%; height: 450px;"></div>
     </section>
+
+<div class="titulo-progreso">
+    <h3>Progreso:</h3>
+</div>   
 
  <!-- Barra de progreso -->
 <div class="progress-bar-container">
@@ -128,6 +133,7 @@
        
 <!-- Ventana Emergente de Detalles de Canción -->
 <div class="song-details hidden">
+    <button class="btn-close-x" onclick="cerrarSongDetails()">×</button> <!-- Botón de cierre tipo X -->
     <h2 id="song-title"></h2>
     <div id="spotify-embed-container"></div> <!-- Contenedor para el iframe de Spotify -->
     <div id="song-history" class="song-history"></div> <!-- Historia del lugar -->
@@ -170,9 +176,19 @@
 <!-- Menú de instrucciones -->
 <div class="instructions-menu hidden" id="instructions-menu">
     <h2>Instrucciones</h2>
-    <p>1. Haz clic en los puntos del mapa para explorar diferentes ubicaciones.</p>
-    <p>2. Cada punto contiene una canción y su historia asociada.</p>
-    <p>3. Usa el botón "Cerrar" para ocultar información adicional.</p>
+    <p>1. Explora las estaciones destacadas en el mapa marcadas con puntos.</p>
+    <p>2. Acércate físicamente a una estación para desbloquear su contenido especial.</p>
+    <p>3. Haz clic en el marcador para descubrir:
+        <ul class="instructions-vienetas">
+            <li>La canción relacionada y su historia.</li>
+            <li>Material descargable exclusivo (ej. MP3).</li>
+            <li>La letra completa de la canción.</li>
+        </ul>
+    </p>
+    <p>4. Desbloquea todas las estaciones para obtener una sorpresa especial.</p>
+    <p>5. Para una experiencia más fluida usa siempre el navegador Google Chrome.</p>
+    <p>6. Usa el botón "Cerrar" para ocultar información adicional.</p>
+    <p><br></p>
     <button class="btn-close-instructions" id="close-instructions">Cerrar</button>
 </div>
 
@@ -195,6 +211,8 @@
 
 <!-- Agrega SweetAlert2 a tu proyecto -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 </body>
 </html>

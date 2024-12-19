@@ -210,6 +210,24 @@ body {
     text-align: center; /* Centrar el título */
 }
 
+/* Botón X para cerrar */
+.btn-close-x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.btn-close-x:hover {
+    opacity: 1;
+}
 
 #spotify-embed-container {
     width: 100%;
@@ -316,7 +334,7 @@ body {
     height: 20px;                /* Altura del contenedor */
     background-color: #333;      /* Color de fondo */
     border-radius: 10px;         /* Bordes redondeados */
-    margin: 20px auto;           /* Centrado horizontal */
+    margin: 5px auto;           /* Centrado horizontal */
 }
 
 /* Estilos para la barra de progreso */
@@ -417,15 +435,15 @@ body {
 /* Estilos para el botón flotante */
 .floating-button {
     position: fixed;
-    bottom: 45px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
+    bottom: 32px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
     background-color: #ff6326;
     color: white;
     font-size: 24px;
     font-weight: bold;
-    border: none;
+    border: 1px solid white;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -433,7 +451,8 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    animation: pulse 2s infinite;
+    animation: pulse 3s infinite;
+    
 }
 
 .floating-button:hover {
@@ -499,4 +518,99 @@ body {
     font-size: 10px;
     padding-top: 10px
     
+    
+}
+
+/* Contenedor del confeti */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 500; /* Queda debajo del popup */
+}
+
+/* Popup centrado */
+.felicitacion-contenedor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.274);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.felicitacion-popup {
+    position: relative;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 40px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: popupAnim 0.5s ease-out;
+}
+
+/* Botón X para cerrar */
+.cerrar-x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.cerrar-x:hover {
+    opacity: 1;
+}
+
+/* Título y texto del popup */
+.felicitacion-popup h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.felicitacion-popup p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Botón de reclamar sorpresa */
+.sorpresa-btn {
+    background-color: #e55422;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.sorpresa-btn:hover {
+    background-color: #e55422;
+}
+
+/* Animación del popup */
+@keyframes popupAnim {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }

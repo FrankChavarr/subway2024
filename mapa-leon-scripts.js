@@ -44,6 +44,12 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/
     attribution: '© Subterráneo'
 }).addTo(map);
 
+function cerrarSongDetails() {
+    const songDetails = document.querySelector('.song-details');
+    if (songDetails) {
+        songDetails.classList.add('hidden'); // Ocultar el popup añadiendo la clase "hidden"
+    }
+}
 
 // Array de estaciones con coordenadas, datos de Spotify y nueva información
 var estaciones = [
@@ -279,7 +285,7 @@ Vos sos mi Funky Love
     { 
         id: 'station7',
         estado:true,
-        coordinates: [12.433809409442372, -86.89511938526172], 
+        coordinates: [12.433836294272638, -86.89531307881556], 
         song: 'El Vuelo', 
         spotify: 'https://open.spotify.com/embed/track/5JvSykCQFREhciHEVyHuYq?utm_source=generator',
         historia: `Bienvenido a la Plaza de Sutiaba, un espacio emblemático que refleja la rica herencia cultural esta comunidad.
@@ -589,45 +595,108 @@ obtenerUserId(function (userId) {
     }
 });
 
-// Función para actualizar la barra de progreso
 function actualizarProgresoBarra() {
-    // Asegurarse de que no se ejecute varias veces sin necesidad
     const totalEstaciones = estaciones.length;
     const estacionesGuardadas = JSON.parse(localStorage.getItem('estacionesLocales'));
     const estacionesDesbloqueadas = estacionesGuardadas.filter(marker => !marker.estado).length;
 
-    // Calculamos el progreso de las estaciones desbloqueadas
     const progreso = (estacionesDesbloqueadas / totalEstaciones) * 100;
-
-    // agregar animación final.
 
     console.log("Total Estaciones: ", totalEstaciones);  // Verificar total
     console.log("Estaciones Desbloqueadas: ", estacionesDesbloqueadas);  // Verificar desbloqueadas
     console.log("Progreso Calculado: ", progreso);  // Verificar progreso calculado
 
-    // Evitar que la barra se actualice si el valor es el mismo
     const progressBar = document.getElementById('progress-bar');
     let currentWidth = parseFloat(progressBar.style.width || '0');
 
-    // Si el progreso actual es cercano al nuevo valor, no hacer nada
     if (Math.abs(currentWidth - progreso) < 0.1) {
         console.log('Progreso ya actualizado');
         return;
     }
 
-    // Animación gradual para actualizar el progreso
-    let step = (progreso - currentWidth) / 10; // Controlar la velocidad de la animación
+    let step = (progreso - currentWidth) / 10;
     let interval = setInterval(() => {
         currentWidth += step;
 
-        // Detener la animación cuando llegamos al progreso final
         if (Math.abs(currentWidth - progreso) < 0.1) {
             currentWidth = progreso;
-            clearInterval(interval); // Detener la animación
+            clearInterval(interval);
         }
 
-        // Limitar la barra para que no se pase del valor máximo (100%)
         progressBar.style.width = `${Math.min(Math.max(currentWidth, 0), 100)}%`;
-    }, 50); // Intervalo pequeño para animación más fluida
+
+        if (currentWidth >= 100) {
+            mostrarFelicitacion();
+        }
+    }, 50);
 }
 
+function mostrarFelicitacion() {
+    const felicitacionPopup = document.createElement('div');
+    felicitacionPopup.className = 'felicitacion-contenedor';
+    felicitacionPopup.innerHTML = `
+        <div class="felicitacion-popup">
+            <button class="cerrar-x" onclick="cerrarFelicitacion()">×</button>
+            <h1>¡Felicidades!</h1>
+            <p>Has completado todas las estaciones de la Ruta Subterráneo.</p>
+            <button class="sorpresa-btn" onclick="window.open('https://wa.me/+50589940318?text=¡He completado todas las estaciones y quiero reclamar mi sorpresa!', '_blank')">
+                Reclama tu sorpresa
+            </button>
+        </div>
+    `;
+    document.body.appendChild(felicitacionPopup);
+
+    lanzarConfeti();
+
+    // Opcional: cerrar automáticamente después de 15 segundos
+    setTimeout(() => {
+        cerrarFelicitacion();
+    }, 15000);
+}
+
+function cerrarFelicitacion() {
+    const popup = document.querySelector('.felicitacion-contenedor');
+    if (popup) {
+        popup.remove();
+    }
+}
+
+function lanzarConfeti() {
+    if (typeof confetti === 'undefined') {
+        console.error('La biblioteca confetti no está disponible. Asegúrate de incluir el script de canvas-confetti.');
+        return;
+    }
+
+    // Crear un contenedor para el confeti
+    const confettiContainer = document.createElement('div');
+    confettiContainer.className = 'confetti-container';
+    document.body.appendChild(confettiContainer);
+
+    var end = Date.now() + (15 * 1000);
+    var colors = ['#e55422', '#ffffff'];
+
+    (function frame() {
+        confetti({
+            particleCount: 2,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: colors,
+            zIndex: 500 // Asegura que quede sobre otros elementos pero detrás del popup
+        });
+        confetti({
+            particleCount: 2,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: colors,
+            zIndex: 500
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        } else {
+            confettiContainer.remove(); // Eliminar contenedor una vez que termine la animación
+        }
+    })();
+}
